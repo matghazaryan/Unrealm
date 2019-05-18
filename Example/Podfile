@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Unrealm_Example' do
+  pod 'Unrealm', :path => '../'
+
+  target 'Unrealm_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
