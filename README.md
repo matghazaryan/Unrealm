@@ -1,7 +1,7 @@
 <p align="center">
    <img width="750" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/unrealm.png" alt="SwiftKit Header Logo">
 </p>
-                                                                                                                                            
+                                                                                                                               <br><br>
 
 <p align="center">
   <a href="https://developer.apple.com/swift/">
@@ -25,9 +25,8 @@
 <br/>
 
 <p align="center">
-  Unrealm enables you to easily save Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> to Realm.<br/>
-It is the best way to start your next Open-Source Swift Framework 📦.<br/>
-SwiftKit is inspired by <a href="https://github.com/JohnSundell/SwiftPlate">SwiftPlate</a>
+  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> in Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from Object! Go for Protocol-Oriented programming!<br>
+Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 </p>
 
 Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.
