@@ -55,7 +55,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Usage
 All you have to do is 
 1. Conform your Classes/Structs to `Realmable` protocol.
-2. Register your Classes/Structs and the beggining.
+2. Register your Classes/Structs in AppDelegate's `didFinishLaunchingWithOptions`.
 ```Swift
 Realm.registerRealmables(ToDoItem.self)
 ```
