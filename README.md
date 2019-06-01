@@ -33,7 +33,18 @@ Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 <p align="center">
 <img width="1024" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/preview.png">
 </p>
+<br>
+
 ## Features
+
+- [x] Swift Classes
+- [x] Swift Structs
+- [x] Swift Enums
+- [x] Swift Primitives
+- [x] Swift Optionals (String, Data, Date)
+- [x] Nested Classes/Structs
+- [ ] Swift Optionals of primitives (Int, Double, etc..)
+
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
