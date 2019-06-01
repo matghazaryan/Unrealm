@@ -25,13 +25,15 @@
 <br/>
 
 <p align="center">
-  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> in Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from Object! Go for Protocol-Oriented programming!<br>
+  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> in Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
 Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 </p>
+<br>
 
-Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.
-# Unrealm
-## Example 
+<p align="center">
+<img width="1024" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/preview.png">
+</p>
+## Features
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
