@@ -8,6 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
+  s.swift_version    = '5.0'
   s.version          = '0.1.0'
   s.summary          = 'A short description of Unrealm.'
 
@@ -28,15 +29,13 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/arturdev/Unrealm.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.source_files = 'Unrealm/Classes/**/*'
+  s.source_files = 'Unrealm/Classes/**/*.{h,m,swift}'
   
-  # s.resource_bundles = {
-  #   'Unrealm' => ['Unrealm/Assets/*.png']
-  # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+
+  s.dependency 'RealmSwift', '3.15.0'
+  s.dependency 'Runtime', '2.1.0'
 end
