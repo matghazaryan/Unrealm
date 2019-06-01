@@ -25,7 +25,7 @@
 <br/>
 
 <p align="center">
-  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> in Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
+  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
 Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 </p>
 <br>
@@ -46,10 +46,20 @@ Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 - [ ] Swift Optionals of primitives (Int, Double, etc..)
 
 
+## Requirements
+Swift 5
+
+## Example Project
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
+## Usage
+All you have to do is 
+1. Conform your Classes/Structs to `Realmable` protocol.
+2. Register your Classes/Structs and the beggining.
+```Swift
+Realm.registerRealmables(ToDoItem.self)
+```
+Thats it!
 ## Installation
 
 Unrealm is available through [CocoaPods](https://cocoapods.org). To install
