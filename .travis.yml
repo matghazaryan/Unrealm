@@ -12,4 +12,4 @@ before_install:
 - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Unrealm.xcworkspace -scheme Unrealm-Example -sdk iphonesimulator12.2 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+- pod lib lint --allow-warnings
