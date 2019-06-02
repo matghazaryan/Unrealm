@@ -8,6 +8,7 @@ language: swift
 # podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
+- pod repo update
 - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Unrealm.xcworkspace -scheme Unrealm-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
