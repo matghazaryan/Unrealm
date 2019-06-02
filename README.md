@@ -25,7 +25,7 @@
 <br/>
 
 <p align="center">
-  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png">.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
+  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into <a href="https://github.com/realm/realm-cocoa">Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png"></a>.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
 Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 </p>
 <br>
@@ -36,30 +36,54 @@ Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 <br>
 
 ## Features
+Unrealm support the following types:
 
-- [x] Swift Classes
-- [x] Swift Structs
-- [x] Swift Enums
 - [x] Swift Primitives
+- [x] Swift Structs
+- [x] Swift Classes
+- [x] Swift Enums
+- [x] Swift Arrays
+- [x] Swift Dictionaries
 - [x] Swift Optionals (String, Data, Date)
 - [x] Nested Classes/Structs
 - [ ] Swift Optionals of primitives (Int, Double, etc..)
 
-
-## Requirements
-Swift 5
 
 ## Example Project
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Usage
 All you have to do is 
-1. Conform your Classes/Structs to `Realmable` protocol.
+1. Conform your Classes/Structs to `Realmable` protocol instead of inheriting from `Object`.
 2. Register your Classes/Structs in AppDelegate's `didFinishLaunchingWithOptions`.
 ```Swift
 Realm.registerRealmables(ToDoItem.self)
 ```
-Thats it!
+Thats it! Now you can store your Struct or Class object into Realm as usualy you do with Objc Classes.
+
+## Pros and Cons 
+
+#### Pros 🎉
+- Enables you to store Swift native types (Structs, Classes, Enums, Arrays, Dictionaries, etc...)
+- Getting rid of redundant inheriting from Object class
+- Getting rid of Realm crashes like "Object has been deleted or invalidated"
+- Getting rid of Realm crashes like "Realm accessed from incorrect thread"
+- Getting rid of boiletplate code such `@objc dynamic var`. Use just `var` or `let`
+
+#### Cons 🍟
+- Losing "Live Objects" feature. Which means when you modify an object got from Realm the other ones will not be updated automatically. So after modifying an object you should manually update it in realm.
+f.e.;
+```Swift
+let realm = try! Realm()
+var todoItem = realm.object(ofType: ToDoItem.self, forPrimaryKey: "1")
+todoItem.text = "Modified text"
+try! realm.write {
+    realm.add(todoItem, update: true) //<- force Realm to update the object
+}
+```
+
+
+
 ## Installation
 
 Unrealm is available through [CocoaPods](https://cocoapods.org). To install
