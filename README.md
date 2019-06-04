@@ -50,11 +50,12 @@ Unrealm support the following types:
 
 
 ## Example Project
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first.<br>
+See also <a href="https://github.com/arturdev/Unrealm/blob/master/Example/Tests/Tests.swift">Unit Tests</a>.
 
 ## Usage
 All you have to do is 
-1. Conform your Classes/Structs to `Realmable` protocol instead of inheriting from `Object`.
+1. Conform your Classes/Structs to `Realmable` protocol instead of inheriting from `Object`. Conform your Enums to `RealmableEnum` protocol.
 2. Register your Classes/Structs in AppDelegate's `didFinishLaunchingWithOptions`.
 ```Swift
 Realm.registerRealmables(ToDoItem.self)
@@ -82,8 +83,6 @@ try! realm.write {
 }
 ```
 
-
-
 ## Installation
 
 Unrealm is available through [CocoaPods](https://cocoapods.org). To install
@@ -92,6 +91,15 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'Unrealm'
 ```
+
+## ToDos
+
+- Add more UnitTests
+
+## Contribution
+
+Contributions are welcome, and they are greatly appreciated!
+
 
 ## Author
 
