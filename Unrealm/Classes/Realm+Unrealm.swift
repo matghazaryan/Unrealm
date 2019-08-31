@@ -152,12 +152,23 @@ public extension Realm {
     static func registerRealmables(_ realmables: [RealmableBase.Type]) {
         //Creating all classes
         realmables.forEach({
+            var superClass: AnyClass = Object.self
+            if !($0 is NSObject.Type) { //is swift type
+                if let c = ($0 as? AnyClass)?.superclass(), let cRealmable = c as? RealmableBase.Type {
+                    let types = exctractTypeComponents(from: cRealmable)
+                    let typeName = types.1
+                    let className = cRealmable.realmClassPrefix + typeName
+                    self.registerRealmables(cRealmable)
+                    superClass = NSClassFromString(className) ?? Object.self
+                }
+            }
+            
             let types = exctractTypeComponents(from: $0)
             let typeName = types.1
             
             let className = $0.realmClassPrefix + typeName
             if NSClassFromString(className) == nil { //If not already created
-                createClass(className, Object.self)
+                createClass(className, superClass)
             }
             
             guard let clzz = NSClassFromString(className) else {

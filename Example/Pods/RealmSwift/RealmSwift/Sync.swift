@@ -188,7 +188,7 @@ public typealias Provider = RLMIdentityProvider
 public enum ServerValidationPolicy {
     /// Perform no validation and accept potentially invalid certificates.
     ///
-    /// -warning: DO NOT USE THIS OPTION IN PRODUCTION.
+    /// - warning: DO NOT USE THIS OPTION IN PRODUCTION.
     case none
 
     /// Use the default server trust evaluation based on the system-wide CA
@@ -237,6 +237,8 @@ public struct SyncConfiguration {
 
     /**
      Whether the SSL certificate of the Realm Object Server should be validated.
+ 
+     - warning: This has been deprecated. Use serverValidationPolicy instead.
      */
     @available(*, deprecated, message: "Use serverValidationPolicy instead")
     public var enableSSLValidation: Bool {
@@ -249,7 +251,7 @@ public struct SyncConfiguration {
      Partial synchronization mode means that no objects are synchronized from the remote Realm
      except those matching queries that the user explicitly specifies.
 
-     -warning: Partial synchronization is a tech preview. Its APIs are subject to change.
+     - warning: This has been deprecated - use fullSyncronization instead.
      */
     @available(*, deprecated, message: "Use fullSynchronization instead")
     public var isPartial: Bool {
@@ -316,11 +318,13 @@ public struct SyncConfiguration {
      `enableSSLValidation` is true by default. It can be disabled for debugging
      purposes.
 
+     - warning: This has ben deprecated. Use SyncUser.configuration() instead.
+ 
      - warning: The URL must be absolute (e.g. `realms://example.com/~/foo`), and cannot end with
                 `.realm`, `.realm.lock` or `.realm.management`.
 
      - warning: NEVER disable SSL validation for a system running in production.
-     */
+    */
     @available(*, deprecated, message: "Use SyncUser.configuration() instead")
     public init(user: SyncUser, realmURL: URL, enableSSLValidation: Bool = true, isPartial: Bool = false, urlPrefix: String? = nil) {
         self.user = user
@@ -334,10 +338,12 @@ public struct SyncConfiguration {
     /**
      Return a Realm configuration for syncing with the default Realm of the currently logged-in sync user.
 
-     Partial synchronization is enabled in the returned configuration.
+     Query based synchronization is enabled in the returned configuration.
 
      - requires: There be exactly one logged-in `SyncUser`
-     */
+
+     - warning: This has ben deprecated. Use SyncUser.configuration() instead.
+    */
     @available(*, deprecated, message: "Use SyncUser.configuration() instead")
     public static func automatic() -> Realm.Configuration {
         return ObjectiveCSupport.convert(object: RLMSyncConfiguration.automaticConfiguration())
@@ -724,7 +730,7 @@ public extension SyncSession {
             return transferredBytes >= transferrableBytes
         }
 
-        fileprivate init(transferred: UInt, transferrable: UInt) {
+        internal init(transferred: UInt, transferrable: UInt) {
             transferredBytes = Int(transferred)
             transferrableBytes = Int(transferrable)
         }
@@ -779,7 +785,7 @@ extension Realm {
      The results will be returned asynchronously in the callback.
      Use `Results.observe(_:)` to be notified to changes to the set of synchronized objects.
 
-     -warning: Partial synchronization is a tech preview. Its APIs are subject to change.
+     - warning: Partial synchronization is a tech preview. Its APIs are subject to change.
      */
     @available(*, deprecated, message: "Use Results.subscribe()")
     public func subscribe<T: Object>(to objects: T.Type, where: String,
@@ -898,7 +904,7 @@ public enum SyncSubscriptionState: Equatable {
 /// Changes to the state of the subscription can be observed using `SyncSubscription.observe(_:options:_:)`.
 ///
 /// Subscriptions are created using `Results.subscribe()` or `Results.subscribe(named:)`.
-public class SyncSubscription<T: RealmCollectionValue>: RealmCollectionValue {
+public final class SyncSubscription<T: RealmCollectionValue>: RealmCollectionValue {
     private let rlmSubscription: RLMSyncSubscription
 
     /// The name of the subscription.
@@ -1012,6 +1018,16 @@ public class SyncSubscription<T: RealmCollectionValue>: RealmCollectionValue {
     }
 }
 
+// :nodoc:
+extension SyncSubscription: CustomObjectiveCBridgeable {
+    static func bridging(objCValue: Any) -> SyncSubscription {
+        return ObjectiveCSupport.convert(object: RLMCastToSyncSubscription(objCValue)) as! SyncSubscription<T>
+    }
+    var objCValue: Any {
+        return 0
+    }
+}
+
 extension Results {
     // MARK: Sync
 
@@ -1111,7 +1127,6 @@ extension Results {
     }
 }
 
-#if swift(>=3.2)
 internal class KeyValueObservationNotificationToken: NotificationToken {
     public var observation: NSKeyValueObservation?
 
@@ -1124,7 +1139,6 @@ internal class KeyValueObservationNotificationToken: NotificationToken {
         self.observation = nil
     }
 }
-#endif // Swift >= 3.2
 
 // MARK: - Migration assistance
 
@@ -1677,7 +1691,7 @@ extension List where Element == Permission {
     */
     public func findOrCreate(forRoleNamed roleName: String) -> Permission {
         precondition(realm != nil, "Cannot be called on an unmanaged object")
-        return RLMPermissionForRole(_rlmArray, realm!.create(PermissionRole.self, value: [roleName], update: true)) as! Permission
+        return RLMPermissionForRole(_rlmArray, realm!.create(PermissionRole.self, value: [roleName], update: .modified)) as! Permission
     }
 
     /**

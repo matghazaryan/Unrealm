@@ -11,7 +11,7 @@ class Tests: XCTestCase {
     }()
     
     private static func configRealm() -> Realm.Configuration {
-        let realmableTypes: [RealmableBase.Type] = [Dog.self, Location.self, User.self]
+        let realmableTypes: [RealmableBase.Type] = [Dog.self, Location.self, User.self, Person.self, SubPerson.self]
         Realm.registerRealmables(realmableTypes)
         let config = Realm.Configuration(fileURL: URL(fileURLWithPath: RLMRealmPathForFile("unrealm_tests.realm")),
                                                       schemaVersion: 1,
@@ -30,6 +30,18 @@ class Tests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func test_person() {
+        let p = SubPerson()
+        p.name = "Name"
+        p.surname = "SurName"
+        try! self.realm.write {
+            self.realm.add(p)
+        }
+        
+        let savedP = self.realm.objects(SubPerson.self).last
+        print(savedP)
     }
     
     func test_with_swift_class_type() {

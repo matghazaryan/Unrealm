@@ -1,7 +1,7 @@
 {
   "name": "Unrealm",
   "swift_versions": "5.0",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "A short description of Unrealm.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/arturdev/Unrealm",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/arturdev/Unrealm.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -22,10 +22,11 @@
   "source_files": "Unrealm/Classes/**/*.{h,m,swift}",
   "dependencies": {
     "RealmSwift": [
-      "3.15.0"
+      "3.17.3"
     ],
     "Runtime": [
       "2.1.0"
     ]
-  }
+  },
+  "swift_version": "5.0"
 }

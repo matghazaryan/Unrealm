@@ -442,9 +442,10 @@ SyncSession::SyncSession(SyncClient& client, std::string realm_path, SyncConfig 
                       realm_config.encryption_key.begin());
         }
 
-        // FIXME: Opening a Realm only to discard it is relatively expensive. It may be preferable to have
-        // realm-sync open the Realm when the `sync::Session` is created since it can continue to use it.
-        Realm::get_shared_realm(realm_config); // Throws
+        std::unique_ptr<Replication> history;
+        std::unique_ptr<SharedGroup> shared_group;
+        std::unique_ptr<Group> read_only_group;
+        Realm::open_with_config(realm_config, history, shared_group, read_only_group, nullptr);
    }
 }
 
@@ -466,12 +467,11 @@ void SyncSession::update_error_and_mark_file_for_deletion(SyncError& error, Shou
     }
     using Action = SyncFileActionMetadata::Action;
     auto action = should_backup == ShouldBackup::yes ? Action::BackUpThenDeleteRealm : Action::DeleteRealm;
-    SyncManager::shared().perform_metadata_update([this,
-                                                   action,
+    SyncManager::shared().perform_metadata_update([this, action,
                                                    original_path=std::move(original_path),
                                                    recovery_path=std::move(recovery_path)](const auto& manager) {
-        manager.make_file_action_metadata(original_path, m_config.realm_url(), m_config.user->identity(),
-                                          action, std::move(recovery_path));
+        auto realm_url = m_config.realm_url();
+        manager.make_file_action_metadata(original_path, realm_url, m_config.user->identity(), action, recovery_path);
     });
 }
 
@@ -516,6 +516,7 @@ void SyncSession::handle_error(SyncError error)
             case ProtocolError::bad_decompression:
             case ProtocolError::partial_sync_disabled:
             case ProtocolError::unsupported_session_feature:
+            case ProtocolError::transact_before_upload:
                 break;
             // Session errors
             case ProtocolError::session_closed:
@@ -594,6 +595,9 @@ void SyncSession::handle_error(SyncError error)
             case ClientError::protocol_mismatch:
             case ClientError::ssl_server_cert_rejected:
             case ClientError::unknown_message:
+            case ClientError::missing_protocol_feature:
+            case ClientError::bad_serial_transact_status:
+            case ClientError::bad_object_id_substitutions:
                 // Don't do anything special for these errors.
                 // Future functionality may require special-case handling for existing
                 // errors, or newly introduced error codes.
@@ -663,9 +667,12 @@ void SyncSession::create_sync_session()
     }
 
     if (m_force_client_reset) {
-        std::string metadata_dir = SyncManager::shared().m_file_manager->get_state_directory();
+        std::string metadata_dir = m_realm_path + ".resync";
         util::try_make_dir(metadata_dir);
-        session_config.client_reset_config = sync::Session::Config::ClientReset{metadata_dir};
+
+        sync::Session::Config::ClientReset config;
+        config.metadata_dir = metadata_dir;
+        session_config.client_reset_config = config;
     }
 
     m_session = m_client.make_session(m_realm_path, std::move(session_config));

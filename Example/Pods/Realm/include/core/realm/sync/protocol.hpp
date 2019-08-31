@@ -134,9 +134,17 @@ namespace sync {
 //
 //  27 STATE_REQUEST, STATE, CLIENT_VERSION_REQUEST and CLIENT_VERSION messages
 //     introduced. These messages are used for client reset and async open.
+//
+//  28 Introduction of TRANSACT message (serialized transactions). New session
+//     level error code 221 "Serialized transaction before upload completion".
+//
+//     Also added new parameters `<min file format version>`, `<max file format
+//     version>`, `<min history schema version>`, and `<max history schema
+//     version>` to STATE_REQUEST message.
+//
 constexpr int get_current_protocol_version() noexcept
 {
-    return 27;
+    return 28;
 }
 
 
@@ -238,10 +246,27 @@ struct UploadCursor {
 /// A client's record of the current point of progress of the synchronization
 /// process. The client must store this persistently in the local Realm file.
 struct SyncProgress {
-    SaltedVersion     latest_server_version{0, 0};
-    DownloadCursor    download{0, 0};
-    UploadCursor      upload{0, 0};
+    SaltedVersion     latest_server_version = {0, 0};
+    DownloadCursor    download = {0, 0};
+    UploadCursor      upload = {0, 0};
     std::int_fast64_t downloadable_bytes = 0;
+};
+
+
+/// An indication of the final status of an attempt at performing a serialized
+/// transaction.
+enum class SerialTransactStatus {
+    /// The transaction was accepted and successful.
+    accepted = 1,
+
+    /// The transaction was rejected because the servers history contained
+    /// causally unrelated changes. I.e., the requesting client lost a race to
+    /// be served first. The client should try again.
+    rejected = 2,
+
+    /// The server did not support serialized transactions at all, or did not
+    /// support it on the targeted Realm in particular.
+    not_supported = 3,
 };
 
 
@@ -281,7 +306,7 @@ enum class ProtocolError {
     permission_denied            = 206, // Permission denied (STATE_REQUEST, BIND, REFRESH)
     bad_server_file_ident        = 207, // Bad server file identifier (IDENT) (obsolete!)
     bad_client_file_ident        = 208, // Bad client file identifier (IDENT)
-    bad_server_version           = 209, // Bad server version (IDENT, UPLOAD)
+    bad_server_version           = 209, // Bad server version (IDENT, UPLOAD, TRANSACT)
     bad_client_version           = 210, // Bad client version (IDENT, UPLOAD)
     diverging_histories          = 211, // Diverging histories (IDENT)
     bad_changeset                = 212, // Bad changeset (UPLOAD)
@@ -294,6 +319,7 @@ enum class ProtocolError {
     server_file_deleted          = 218, // Server file was deleted while session was bound to it
     client_file_blacklisted      = 219, // Client file has been blacklisted (IDENT)
     user_blacklisted             = 220, // User has been blacklisted (BIND)
+    transact_before_upload       = 221, // Serialized transaction before upload completion
 };
 
 inline constexpr bool is_session_level_error(ProtocolError error)

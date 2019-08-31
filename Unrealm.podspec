@@ -9,8 +9,8 @@
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
   s.swift_version    = '5.0'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of Unrealm.'
+  s.version          = '0.1.1'
+  s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -19,7 +19,13 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.
+Benefits:
+Enables you to store Swift native types (Structs, Classes, Enums, Arrays, Dictionaries, etc...)
+Getting rid of redundant inheriting from Object class
+Getting rid of Realm crashes like "Object has been deleted or invalidated"
+Getting rid of Realm crashes like "Realm accessed from incorrect thread"
+Getting rid of boiletplate code such @objc dynamic var. Use just var or let
                        DESC
 
   s.homepage         = 'https://github.com/arturdev/Unrealm'
@@ -36,6 +42,6 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
 
-  s.dependency 'RealmSwift', '3.15.0'
+  s.dependency 'RealmSwift', '3.17.3'
   s.dependency 'Runtime', '2.1.0'
 end

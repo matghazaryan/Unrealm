@@ -61,7 +61,6 @@ private:
     void append_bytes(const void*, size_t);
 
     template<class T> void append_int(T);
-    template<class T> char* encode_int(char* buffer, T value);
     void append_payload(const Instruction::Payload&);
     void append_value(DataType);
     void append_value(bool);
@@ -109,10 +108,10 @@ inline StringData ChangesetEncoder::get_string(StringBufferRange range) const no
 }
 
 template <class Allocator>
-void encode_changeset(const Changeset& log, util::AppendBuffer<char, Allocator>& out_buffer)
+void encode_changeset(const Changeset& changeset, util::AppendBuffer<char, Allocator>& out_buffer)
 {
     ChangesetEncoder encoder;
-    encoder.encode_single(log); // Throws
+    encoder.encode_single(changeset); // Throws
     auto& buffer = encoder.buffer();
     out_buffer.append(buffer.data(), buffer.size()); // Throws
 }

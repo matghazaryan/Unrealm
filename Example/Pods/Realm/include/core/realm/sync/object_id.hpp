@@ -46,9 +46,9 @@ class Group;
 
 namespace sync {
 
-/// ObjectIDs are globally unique, and up to 128 bits wide. They are represented
-/// as two 64-bit integers, each of which may frequently be small, for best
-/// on-wire compressibility.
+/// ObjectIDs are globally unique for a given class (table), and up to 128 bits
+/// wide. They are represented as two 64-bit integers, each of which may
+/// frequently be small, for best on-wire compressibility.
 struct ObjectID {
     constexpr ObjectID(uint64_t hi, uint64_t lo);
     static ObjectID from_string(StringData);
