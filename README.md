@@ -46,7 +46,7 @@ Unrealm support the following types:
 - [x] Swift Dictionaries
 - [x] Swift Optionals (String, Data, Date)
 - [x] Nested Classes/Structs
-- [ ] Swift Optionals of primitives (Int, Double, etc..)
+- [x] Swift Optionals of primitives (Int, Float, Double, Bool)
 
 
 ## Example Project
@@ -69,7 +69,8 @@ Thats it! Now you can store your Struct or Class object into Realm as usualy you
 - Getting rid of redundant inheriting from Object class
 - Getting rid of Realm crashes like "Object has been deleted or invalidated"
 - Getting rid of Realm crashes like "Realm accessed from incorrect thread"
-- Getting rid of boiletplate code such `@objc dynamic var`. Use just `var` or `let`
+- Getting rid of boilerplate code such as `@objc dynamic var`. Use just `var` or `let`
+- Getting rid of boilerplate code such as `RealmOptional<Int>`. Use just `Int?`
 
 #### Cons 🍟
 - Losing "Live Objects" feature. Which means when you modify an object got from Realm the other ones will not be updated automatically. So after modifying an object you should manually update it in realm.
