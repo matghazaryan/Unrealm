@@ -74,15 +74,42 @@ public extension Realm {
      - parameter update: If `true`, the Realm will try to find an existing copy of the object (with the same primary
      key), and update it. Otherwise, the object will be added.
      */
-    func add<RealmableElement: Realmable>(_ realmable: RealmableElement, update: Bool = false) {
-        guard let obj = realmable.toObject() else {
-            fatalError("Cannot convert \(realmable) to Object")
-        }
-         
-        self.add(obj, update: update)
-        realmable.setRealm(self)
+	@available(*, deprecated, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
+    func add<RealmableElement: Realmable>(_ realmable: RealmableElement, update: Bool) {
+		add(realmable, update: update ? .all : .error)
     }
-    
+
+	/**
+	Adds an unmanaged object to this Realm.
+
+	If an object with the same primary key already exists in this Realm, it is updated with the property values from
+	this object as specified by the `UpdatePolicy` selected. The update policy must be `.error` for objects with no
+	primary key.
+
+	Adding an object to a Realm will also add all child relationships referenced by that object (via `Object` and
+	`List<Object>` properties). Those objects must also be valid objects to add to this Realm, and the value of
+	the `update:` parameter is propagated to those adds.
+
+	The object to be added must either be an unmanaged object or a valid object which is already managed by this
+	Realm. Adding an object already managed by this Realm is a no-op, while adding an object which is managed by
+	another Realm or which has been deleted from any Realm (i.e. one where `isInvalidated` is `true`) is an error.
+
+	To copy a managed object from one Realm to another, use `create()` instead.
+
+	- warning: This method may only be called during a write transaction.
+
+	- parameter object: The object to be added to this Realm.
+	- parameter update: What to do if an object with the same primary key alredy exists. Must be `.error` for objects
+	without a primary key.
+	*/
+	func add<RealmableElement: Realmable>(_ realmable: RealmableElement, update: UpdatePolicy = .error) {
+		guard let obj = realmable.toObject() else {
+			fatalError("Cannot convert \(realmable) to Object")
+		}
+
+		self.add(obj, update: update)
+		realmable.setRealm(self)
+	}
     /**
      Adds or updates all the objects in a collection into the Realm.
      
@@ -95,7 +122,7 @@ public extension Realm {
      */
     func add<S: Sequence>(_ objects: S, update: Bool = false) where S.Iterator.Element: Realmable {
         for obj in objects {
-            add(obj, update: update)
+			add(obj, update: update ? .all : .error)
         }
     }
     
@@ -222,7 +249,6 @@ fileprivate func exctractTypeComponents<Subject>(from subject: Subject) -> (Stri
 fileprivate func addProperties(of value: RealmableBase, to className: AnyClass, ignoreProperties: [String]) {
     let mirror = Mirror(reflecting: value)
     let children = mirror.children.reversed()
-    
     for child in children {
         guard let name = child.label else {continue}
         if ignoreProperties.contains(name) {continue}
@@ -295,7 +321,14 @@ fileprivate func getTypeString(from value: Any) -> String {
         
         if let realmableType = objectsAndRealmables.first(where: {String(describing: $0.value).components(separatedBy: ".").last == typeStr}) {
             typeStr = realmableType.key
-        }
+		} else {
+
+			switch typeStr {
+			case "Int", "Int8", "Int16", "Int32", "Int64", "UInt", "UInt8", "UInt16", "UInt32", "UInt64", "Float", "Float32", "Float64", "Double", "Bool":
+				typeStr = "NSNumber<RLM" + typeStr + ">"
+			default: break
+			}
+		}
     }
     
     if typeStr.hasPrefix("Dictionary<") {

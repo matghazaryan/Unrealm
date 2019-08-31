@@ -25,6 +25,10 @@ struct User: Realmable {
     var locOptional: Location? = nil
     var enumVal: MyEnum = .case1    
     var dic: [String:Any] = [:]
+	var intOptional: Int? = nil
+	var floatOptional: Float? = nil
+	var doubleOptional: Double? = nil
+	var boolOptional: Bool? = nil
     
     static func primaryKey() -> String? {
         return "id"

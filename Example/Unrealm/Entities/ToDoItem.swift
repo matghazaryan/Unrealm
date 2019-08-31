@@ -48,7 +48,7 @@ extension ToDoItem {
         guard let realm = try? Realm() else { return }
         isCompleted.toggle()
         try! realm.write {
-            realm.add(self, update: true)
+            realm.add(self, update: .all)
         }
     }
     

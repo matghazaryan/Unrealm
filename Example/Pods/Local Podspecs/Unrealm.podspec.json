@@ -1,9 +1,9 @@
 {
   "name": "Unrealm",
   "swift_versions": "5.0",
-  "version": "0.1.1",
-  "summary": "A short description of Unrealm.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "0.2.0",
+  "summary": "Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.",
+  "description": "Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.\nBenefits:\nEnables you to store Swift native types (Structs, Classes, Enums, Arrays, Dictionaries, etc...)\nGetting rid of redundant inheriting from Object class\nGetting rid of Realm crashes like \"Object has been deleted or invalidated\"\nGetting rid of Realm crashes like \"Realm accessed from incorrect thread\"\nGetting rid of boiletplate code such @objc dynamic var. Use just var or let",
   "homepage": "https://github.com/arturdev/Unrealm",
   "license": {
     "type": "MIT",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/arturdev/Unrealm.git",
-    "tag": "0.1.1"
+    "tag": "0.2.0"
   },
   "platforms": {
     "ios": "9.0"

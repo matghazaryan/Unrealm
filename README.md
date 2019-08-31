@@ -1,31 +1,31 @@
 <p align="center">
-   <img width="750" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/unrealm.png" alt="Unrealm Header Logo">
+<img width="750" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/unrealm.png" alt="Unrealm Header Logo">
 </p>
-                                                                                                                               <br><br>
+<br><br>
 
 <p align="center">
-  <a href="https://developer.apple.com/swift/">
-      <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0">
-  </a>
-  <a href="https://travis-ci.com/arturdev/Unrealm">
-      <img src="https://travis-ci.com/arturdev/Unrealm.svg?branch=master" alt="Build Status">
-  </a>
-  <a href="https://cocoapods.org/pods/Unrealm">
-      <img src="https://img.shields.io/cocoapods/v/Unrealm.svg?style=flat" alt="Version">
-  </a>
-  <a href="https://cocoapods.org/pods/Unrealm">
-      <img src="https://img.shields.io/cocoapods/l/Unrealm.svg?style=flat" alt="License">
-  </a>
-  <a href="https://cocoapods.org/pods/Unrealm">
-      <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
-  </a>
+<a href="https://developer.apple.com/swift/">
+<img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0">
+</a>
+<a href="https://travis-ci.com/arturdev/Unrealm">
+<img src="https://travis-ci.com/arturdev/Unrealm.svg?branch=master" alt="Build Status">
+</a>
+<a href="https://cocoapods.org/pods/Unrealm">
+<img src="https://img.shields.io/cocoapods/v/Unrealm.svg?style=flat" alt="Version">
+</a>
+<a href="https://cocoapods.org/pods/Unrealm">
+<img src="https://img.shields.io/cocoapods/l/Unrealm.svg?style=flat" alt="License">
+</a>
+<a href="https://cocoapods.org/pods/Unrealm">
+<img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
+</a>
 
 </p>
-  
+
 <br/>
 
 <p align="center">
-  Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into <a href="https://github.com/realm/realm-cocoa">Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png"></a>.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
+Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into <a href="https://github.com/realm/realm-cocoa">Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png"></a>.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
 Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 </p>
 <br>
@@ -80,7 +80,7 @@ let realm = try! Realm()
 var todoItem = realm.object(ofType: ToDoItem.self, forPrimaryKey: "1")
 todoItem.text = "Modified text"
 try! realm.write {
-    realm.add(todoItem, update: true) //<- force Realm to update the object
+realm.add(todoItem, update: true) //<- force Realm to update the object
 }
 ```
 

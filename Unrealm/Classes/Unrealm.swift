@@ -248,7 +248,7 @@ public extension Realmable {
     
     mutating func readValues(from obj: Object) {
         let mirror = Mirror(reflecting: self)
-        let children = mirror.children
+        let children = mirror.childrenIncludingSuperclass(subject: self)
         guard let info = try? typeInfo(of: type(of: self)) else {return}
         
         for child in children {
@@ -346,15 +346,8 @@ extension Object {
 
 fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObject? {
     let mirror = Mirror(reflecting: val)
-    var children = mirror.children
-    if let opt = val as? OptionalPrtc {
-        if !(opt.val is NSNull) {
-            children = Mirror(reflecting: opt.val).children
-        } else {
-            return nil
-        }
-    }
-    
+    let children = mirror.childrenIncludingSuperclass(subject: val)
+
     let obj = objectType.init()
     children.filter({$0.label != nil}).forEach({
         let label = $0.label!
@@ -393,9 +386,67 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
                     obj.setValue(data, forKey: label)
                 }
             } else {
-                obj.setValue(value, forKey: label)
+				//TODO: check if optional primitives
+				if let number = NSNumber(value: value) {
+					obj.setValue(number, forKey: label)
+				} else {
+                	obj.setValue(value, forKey: label)
+				}
             }
         }
     })
     return obj
+}
+
+extension Mirror {
+	func childrenIncludingSuperclass(subject obj: Any) -> [Mirror.Child] {
+		var result = children.map({$0})
+
+		if let opt = obj as? OptionalPrtc {
+			if !(opt.val is NSNull) {
+				let val = opt.val
+				result = Mirror(reflecting: opt.val).childrenIncludingSuperclass(subject: val)
+			} else {
+				result = []
+			}
+		}
+
+		if let superMirror = self.superclassMirror {
+			result.append(contentsOf: superMirror.childrenIncludingSuperclass(subject: obj))
+		}
+		return result
+	}
+}
+
+extension NSNumber {
+	convenience init?(value: Any) {
+		if let value = value as? Int8 {
+			self.init(value: value)
+		} else if let value = value as? Int16 {
+			self.init(value: value)
+		} else if let value = value as? Int32 {
+			self.init(value: value)
+		} else if let value = value as? Int {
+			self.init(value: value)
+		} else if let value = value as? Int64 {
+			self.init(value: value)
+		} else if let value = value as? UInt8 {
+			self.init(value: value)
+		} else if let value = value as? UInt16 {
+			self.init(value: value)
+		} else if let value = value as? UInt32 {
+			self.init(value: value)
+		} else if let value = value as? UInt64 {
+			self.init(value: value)
+		} else if let value = value as? UInt16 {
+			self.init(value: value)
+		} else if let value = value as? Float {
+			self.init(value: value)
+		} else if let value = value as? Double {
+			self.init(value: value)
+		} else if let value = value as? Bool {
+			self.init(value: value)
+		}
+		return nil
+	}
 }

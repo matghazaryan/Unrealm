@@ -32,7 +32,7 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func test_person() {
+    func test_with_class_inheritance() {
         let p = SubPerson()
         p.name = "Name"
         p.surname = "SurName"
@@ -41,7 +41,8 @@ class Tests: XCTestCase {
         }
         
         let savedP = self.realm.objects(SubPerson.self).last
-        print(savedP)
+		XCTAssertEqual(p.surname, savedP?.surname)
+		XCTAssertEqual(p.name, savedP?.name)
     }
     
     func test_with_swift_class_type() {
@@ -82,7 +83,12 @@ class Tests: XCTestCase {
                         loc: loc3,
                         locOptional: Location(lat: 5.5, lng: 6.6),
                         enumVal: .case2,
-                        dic: ["x" : 1, "y" : "y"])
+                        dic: ["x" : 1, "y" : "y"],
+						intOptional: 3,
+						floatOptional: 3.4,
+						doubleOptional: 1.3,
+						boolOptional: true)
+
         try! self.realm.write {
             self.realm.add(user)
         }
@@ -100,7 +106,8 @@ class Tests: XCTestCase {
         XCTAssertEqual(user.locOptional?.lng, savedUser!.locOptional?.lng)
         XCTAssertEqual(user.enumVal, savedUser!.enumVal)
         XCTAssertEqual(NSDictionary(dictionary: user.dic), NSDictionary(dictionary: savedUser!.dic))
-        
+        XCTAssertEqual(user.intOptional, savedUser!.intOptional)
+
         XCTAssertEqual(user.list.count, savedUser!.list.count)
         for i in 0..<user.list.count {
             XCTAssertEqual(user.list[i].lat, savedUser!.list[i].lat)
