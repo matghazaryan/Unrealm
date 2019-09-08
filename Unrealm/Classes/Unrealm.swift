@@ -56,6 +56,7 @@ extension Optional: RealmableBase where Wrapped: RealmableBase {
 
 public protocol OptionalPrtc {
     var val: Any {get}
+	var type: Any.Type {get}
 }
 
 extension Optional: OptionalPrtc {
@@ -67,6 +68,10 @@ extension Optional: OptionalPrtc {
             return wrapped
         }
     }
+
+	public var type: Any.Type {
+	    return Wrapped.self
+	}
 }
 
 public protocol RealmableBase {

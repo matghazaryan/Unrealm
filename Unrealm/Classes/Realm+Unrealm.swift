@@ -217,9 +217,7 @@ public extension Realm {
         
         for realmable in realmables {
             let types = exctractTypeComponents(from: realmable)
-            //            let moduleName = types.0
             let typeName = types.1
-            //            let realmClassName = moduleName + "." + realmable.realmClassPrefix + typeName
             let realmClassName = realmable.realmClassPrefix + typeName
             
             objectsAndRealmables[realmClassName] = realmable
@@ -251,6 +249,14 @@ fileprivate func addProperties(of value: RealmableBase, to className: AnyClass, 
     let children = mirror.children.reversed()
     for child in children {
         guard let name = child.label else {continue}
+		//Check for Realmable children
+		let childType = type(of: child.value)
+		if let t = childType as? RealmableBase.Type {
+			Realm.registerRealmables(t)
+		} else if let t = (child.value as? OptionalPrtc).type as? RealmableBase.Type {
+			Realm.registerRealmables(t)
+		}
+
         if ignoreProperties.contains(name) {continue}
         let typeStr: String
         let types = exctractTypeComponents(from: child.value)

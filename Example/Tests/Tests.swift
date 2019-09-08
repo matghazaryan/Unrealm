@@ -11,7 +11,7 @@ class Tests: XCTestCase {
     }()
     
     private static func configRealm() -> Realm.Configuration {
-        let realmableTypes: [RealmableBase.Type] = [Dog.self, Location.self, User.self, Person.self, SubPerson.self]
+        let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self]
         Realm.registerRealmables(realmableTypes)
         let config = Realm.Configuration(fileURL: URL(fileURLWithPath: RLMRealmPathForFile("unrealm_tests.realm")),
                                                       schemaVersion: 1,
@@ -114,4 +114,44 @@ class Tests: XCTestCase {
             XCTAssertEqual(user.list[i].lng, savedUser!.list[i].lng)
         }
     }
+
+	func testWithChildRealmable() {
+		let user = User(id: UUID().uuidString,
+						a: "Some a",
+						b: "Some b",
+						ignorable: "Some ignorable",
+						list: [],
+						loc: Location(lat: 9.2, lng: 1.6),
+						locOptional: Location(lat: 5.5, lng: 6.6),
+						enumVal: .case2,
+						dic: ["x" : 1, "y" : "y"],
+						intOptional: 3,
+						floatOptional: 3.4,
+						doubleOptional: 1.3,
+						boolOptional: true)
+
+		try! self.realm.write {
+			self.realm.add(user)
+		}
+
+		let savedUser = self.realm.objects(User.self).last
+		XCTAssertNotNil(savedUser)
+		XCTAssertEqual(user.id, savedUser!.id)
+		XCTAssertEqual(user.a, savedUser!.a)
+		XCTAssertEqual(user.b, savedUser!.b)
+		XCTAssertEqual(savedUser!.ignorable, "ignorableInitialValue")
+		XCTAssertEqual(user.loc.lat, savedUser!.loc.lat)
+		XCTAssertEqual(user.loc.lng, savedUser!.loc.lng)
+		XCTAssertEqual(user.locOptional?.lat, savedUser!.locOptional?.lat)
+		XCTAssertEqual(user.locOptional?.lng, savedUser!.locOptional?.lng)
+		XCTAssertEqual(user.enumVal, savedUser!.enumVal)
+		XCTAssertEqual(NSDictionary(dictionary: user.dic), NSDictionary(dictionary: savedUser!.dic))
+		XCTAssertEqual(user.intOptional, savedUser!.intOptional)
+
+		XCTAssertEqual(user.list.count, savedUser!.list.count)
+		for i in 0..<user.list.count {
+			XCTAssertEqual(user.list[i].lat, savedUser!.list[i].lat)
+			XCTAssertEqual(user.list[i].lng, savedUser!.list[i].lng)
+		}
+	}
 }
