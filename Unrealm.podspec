@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
   s.swift_version    = '5.0'
-  s.version          = '0.2.1'
+  s.version          = '0.2.2'
   s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
   s.description      = <<-DESC
 Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.
@@ -18,7 +18,7 @@ Enables you to store Swift native types (Structs, Classes, Enums, Arrays, Dictio
 Getting rid of redundant inheriting from Object class
 Getting rid of Realm crashes like "Object has been deleted or invalidated"
 Getting rid of Realm crashes like "Realm accessed from incorrect thread"
-Getting rid of boiletplate code such @objc dynamic var. Use just var or let
+Getting rid of boilerplate code such @objc dynamic var. Use just var or let
                        DESC
 
   s.homepage         = 'https://github.com/arturdev/Unrealm'

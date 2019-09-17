@@ -1,3 +1,4 @@
+
 <p align="center">
 <img width="750" src="https://raw.githubusercontent.com/arturdev/Unrealm/assets/unrealm.png" alt="Unrealm Header Logo">
 </p>
@@ -13,13 +14,13 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/v/Unrealm.svg?style=flat" alt="Version">
 </a>
+<img src="https://img.shields.io/badge/spm-v0.2.2-orange.svg?style=flat" alt="Platform">
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/l/Unrealm.svg?style=flat" alt="License">
 </a>
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
 </a>
-
 </p>
 
 <br/>
@@ -86,6 +87,7 @@ realm.add(todoItem, update: true) //<- force Realm to update the object
 
 ## Installation
 
+### CocoaPods
 Unrealm is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -93,9 +95,19 @@ it, simply add the following line to your Podfile:
 pod 'Unrealm'
 ```
 
+### Swift Package Manager
+You can also use Swift Package Manager to add Unrealm as a dependency to your project. In order to do so, use the following URL:
+
+```bash
+https://github.com/arturdev/Unrealm.git
+```
+
+You will also need to set your desired version or branch (e.g. master).
+
 ## ToDos
 
 - Add more UnitTests
+- Create a sample project for Swift Package Manager when dependencies can be added to many targets in a simple project.
 
 ## Contribution
 
