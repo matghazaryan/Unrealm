@@ -11,6 +11,10 @@ import RealmSwift
 import Realm
 import Runtime
 
+#if canImport(UnrealmObjC)
+import UnrealmObjC
+#endif
+
 internal var objectsAndRealmables: [String:RealmableBase.Type] = [:]
 
 public protocol RealmableEnum {

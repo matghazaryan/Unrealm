@@ -6,8 +6,12 @@
 //
 
 import Foundation
-import RealmSwift
 import Realm
+import RealmSwift
+
+#if canImport(UnrealmObjC)
+import UnrealmObjC
+#endif
 
 public struct Results<Element: RealmableBase > {
     
@@ -18,9 +22,9 @@ public struct Results<Element: RealmableBase > {
 }
 
 //MARK: - Filtering
-extension Unrealm.Results {
-    public func filter(_ predicateFormat: String, _ args: Any...) -> Unrealm.Results<Element> {
-        return Unrealm.Results(rlmResult: rlmResult.filter(predicateFormat, args))
+extension Results {
+    public func filter(_ predicateFormat: String, _ args: Any...) -> Results<Element> {
+        return Results(rlmResult: rlmResult.filter(predicateFormat, args))
     }
     
     /**
@@ -28,13 +32,13 @@ extension Unrealm.Results {
      
      - parameter predicate: The predicate with which to filter the objects.
      */
-    public func filter(_ predicate: NSPredicate) -> Unrealm.Results<Element> {
-        return Unrealm.Results(rlmResult: rlmResult.filter(predicate))
+    public func filter(_ predicate: NSPredicate) -> Results<Element> {
+        return Results(rlmResult: rlmResult.filter(predicate))
     }
 }
 
 //MARK: - Sorting
-extension Unrealm.Results {
+extension Results {
     
     /**
      Returns a `Results` containing the objects represented by the results, but sorted.
@@ -49,8 +53,8 @@ extension Unrealm.Results {
      - parameter keyPath:   The key path to sort by.
      - parameter ascending: The direction to sort in.
      */
-    public func sorted(byKeyPath keyPath: String, ascending: Bool = true) -> Unrealm.Results<Element> {
-        return Unrealm.Results(rlmResult: rlmResult.sorted(byKeyPath: keyPath, ascending: ascending))
+    public func sorted(byKeyPath keyPath: String, ascending: Bool = true) -> Results<Element> {
+        return Results(rlmResult: rlmResult.sorted(byKeyPath: keyPath, ascending: ascending))
     }
     
     /**
@@ -63,23 +67,23 @@ extension Unrealm.Results {
      
      - parameter sortDescriptors: A sequence of `SortDescriptor`s to sort by.
      */
-    public func sorted<S: Sequence>(by sortDescriptors: S) -> Unrealm.Results<Element>
+    public func sorted<S: Sequence>(by sortDescriptors: S) -> Results<Element>
         where S.Iterator.Element == SortDescriptor {
-            return Unrealm.Results(rlmResult: rlmResult.sorted(by: sortDescriptors))
+            return Results(rlmResult: rlmResult.sorted(by: sortDescriptors))
     }
 }
 
 //MARK: - Aggregate operations
-extension Unrealm.Results {
+extension Results {
     
     /**
      Returns a `Results` containing distinct objects based on the specified key paths
      
      - parameter keyPaths:  The key paths used produce distinct results
      */
-    public func distinct<S: Sequence>(by keyPaths: S) -> Unrealm.Results<Element>
+    public func distinct<S: Sequence>(by keyPaths: S) -> Results<Element>
         where S.Iterator.Element == String {
-            return Unrealm.Results(rlmResult: rlmResult.distinct(by: keyPaths))
+            return Results(rlmResult: rlmResult.distinct(by: keyPaths))
     }
     
     /**
@@ -128,7 +132,7 @@ extension Unrealm.Results {
 }
 
 // MARK: - Notifications
-extension Unrealm.Results {
+extension Results {
     /**
      Registers a block to be called each time the collection changes.
      
@@ -184,22 +188,22 @@ extension Unrealm.Results {
      - parameter block: The block to be called whenever a change occurs.
      - returns: A token which must be held for as long as you want updates to be delivered.
      */
-    public func observe(_ block: @escaping (RealmCollectionChange<Unrealm.Results<Element>>) -> Void) -> NotificationToken {
+    public func observe(_ block: @escaping (RealmCollectionChange<Results<Element>>) -> Void) -> NotificationToken {
         return rlmResult.observe({ (change) in
             switch change {
             case .error(let error):
                 block(RealmCollectionChange.error(error))
             case .initial(let collection):
-                block(RealmCollectionChange.initial(Unrealm.Results(rlmResult: collection)))
+                block(RealmCollectionChange.initial(Results(rlmResult: collection)))
             case .update(let collection, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-                block(RealmCollectionChange.update(Unrealm.Results(rlmResult: collection), deletions: deletions, insertions: insertions, modifications: modifications))
+                block(RealmCollectionChange.update(Results(rlmResult: collection), deletions: deletions, insertions: insertions, modifications: modifications))
             }
         })
     }
 }
 
 //MARK: - Collection
-extension Unrealm.Results: Collection {
+extension Results: Collection {
     public typealias Index = Int
     
     public var startIndex: Index {
@@ -226,7 +230,7 @@ extension Unrealm.Results: Collection {
 }
 
 //MARK: - String Convertible
-extension Unrealm.Results: CustomStringConvertible {
+extension Results: CustomStringConvertible {
     public var description: String {
         return Array(self).map({return String(describing: $0)}).joined(separator: "\n")
     }

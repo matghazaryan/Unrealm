@@ -7,9 +7,13 @@
 //
 
 import Foundation
-import RealmSwift
 import Realm
+import RealmSwift
 import Runtime
+
+#if canImport(UnrealmObjC)
+import UnrealmObjC
+#endif
 
 public extension Realm {
     
