@@ -11,7 +11,7 @@ class Tests: XCTestCase {
     }()
     
     private static func configRealm() -> Realm.Configuration {
-        let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self]
+        let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self]
         Realm.registerRealmables(realmableTypes)
         let config = Realm.Configuration(fileURL: URL(fileURLWithPath: RLMRealmPathForFile("unrealm_tests.realm")),
                                                       schemaVersion: 1,
@@ -31,6 +31,32 @@ class Tests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+
+	func testPassenger() {
+		let url = Bundle(for: type(of: self)).url(forResource: "passenger", withExtension: "json")!
+		let jsonData = try! Data(contentsOf: url)
+		let passenger = try! JSONDecoder().decode(Passenger.self, from: jsonData)
+		try! self.realm.write {
+			self.realm.add(passenger, update: .all)
+		}
+
+		let savedP = self.realm.objects(Passenger.self).last
+		XCTAssertEqual(passenger.firstName, savedP?.firstName)
+		XCTAssertEqual(passenger.driver, nil)
+	}
+
+	func testPassengerWithDriver() {
+		let url = Bundle(for: type(of: self)).url(forResource: "passengerWithDriver", withExtension: "json")!
+		let jsonData = try! Data(contentsOf: url)
+		let passenger = try! JSONDecoder().decode(Passenger.self, from: jsonData)
+		try! self.realm.write {
+			self.realm.add(passenger, update: .all)
+		}
+
+		let savedP = self.realm.objects(Passenger.self).last
+		XCTAssertEqual(passenger.firstName, savedP?.firstName)
+		XCTAssertEqual(passenger.driver?.numberOfTrips, savedP?.driver?.numberOfTrips)
+	}
     
     func test_with_class_inheritance() {
         let p = SubPerson()
@@ -114,6 +140,48 @@ class Tests: XCTestCase {
             XCTAssertEqual(user.list[i].lng, savedUser!.list[i].lng)
         }
     }
+
+	func testWithNilValues() {
+		let loc3 = Location(lat: 9.2, lng: 1.6)
+		let user = User(id: UUID().uuidString,
+						a: "Some a",
+						b: nil,
+						ignorable: nil,
+						list: [],
+						loc: loc3,
+						locOptional: nil,
+						enumVal: .case2,
+						dic: ["x" : 1, "y" : "y"],
+						intOptional: nil,
+						floatOptional: nil,
+						doubleOptional: nil,
+						boolOptional: nil)
+
+		try! self.realm.write {
+			self.realm.add(user)
+		}
+
+		let savedUser = self.realm.objects(User.self).last
+		XCTAssertNotNil(savedUser)
+
+		XCTAssertEqual(user.id, savedUser!.id)
+		XCTAssertEqual(user.a, savedUser!.a)
+		XCTAssertEqual(user.b, savedUser!.b)
+		XCTAssertEqual(savedUser!.ignorable, "ignorableInitialValue")
+		XCTAssertEqual(user.loc.lat, savedUser!.loc.lat)
+		XCTAssertEqual(user.loc.lng, savedUser!.loc.lng)
+		XCTAssertEqual(user.locOptional?.lat, savedUser!.locOptional?.lat)
+		XCTAssertEqual(user.locOptional?.lng, savedUser!.locOptional?.lng)
+		XCTAssertEqual(user.enumVal, savedUser!.enumVal)
+		XCTAssertEqual(NSDictionary(dictionary: user.dic), NSDictionary(dictionary: savedUser!.dic))
+		XCTAssertEqual(user.intOptional, savedUser!.intOptional)
+
+		XCTAssertEqual(user.list.count, savedUser!.list.count)
+		for i in 0..<user.list.count {
+			XCTAssertEqual(user.list[i].lat, savedUser!.list[i].lat)
+			XCTAssertEqual(user.list[i].lng, savedUser!.list[i].lng)
+		}
+	}
 
 	func testWithChildRealmable() {
 		let user = User(id: UUID().uuidString,

@@ -366,6 +366,9 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
             guard let className = propertyClassName(label, objectType) else {return}
             let fullClassName = objectsAndRealmables.keys.first(where: {$0.contains(className)}) ?? className
             guard let c = NSClassFromString(fullClassName) as? NSObject.Type else {return}
+			if let opt = value as? OptionalPrtc, (opt.val is NSNull) {
+				return
+			}
             let o = convert(val: value, to: c)
             obj.setValue(o, forKey: label)
         } else if value is RealmableEnum {

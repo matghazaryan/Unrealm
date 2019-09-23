@@ -22,6 +22,10 @@
 		75D4AEEF229B1DCB0038C8C4 /* UserInputAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */; };
 		75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C87FF2292BF1600BF03A7 /* Dog.swift */; };
 		7D9FC8C49B6F7886C1585B84 /* Pods_Unrealm_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3BBE4A361CD46CD5A0BD6D /* Pods_Unrealm_Tests.framework */; };
+		AFD47B1E233902C500FCCA4A /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD47B1B233902C500FCCA4A /* Passenger.swift */; };
+		AFD47B20233902C500FCCA4A /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD47B1C233902C500FCCA4A /* Driver.swift */; };
+		AFD47B2423390B3200FCCA4A /* passengerWithDriver.json in Resources */ = {isa = PBXBuildFile; fileRef = AFD47B2323390B3200FCCA4A /* passengerWithDriver.json */; };
+		AFD47B2523390B3400FCCA4A /* passenger.json in Resources */ = {isa = PBXBuildFile; fileRef = AFD47B2123390A1900FCCA4A /* passenger.json */; };
 		CECBBC2E245BE04D5DE66DEB /* Pods_Unrealm_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D74910346ABA7D1BC77DF3 /* Pods_Unrealm_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +64,10 @@
 		75D4AEE9229B1BDD0038C8C4 /* ToDoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListController.swift; sourceTree = "<group>"; };
 		75D4AEEC229B1DCB0038C8C4 /* UITableView+RealmChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+RealmChanges.swift"; sourceTree = "<group>"; };
 		75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputAlert.swift; sourceTree = "<group>"; };
+		AFD47B1B233902C500FCCA4A /* Passenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
+		AFD47B1C233902C500FCCA4A /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		AFD47B2123390A1900FCCA4A /* passenger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = passenger.json; sourceTree = "<group>"; };
+		AFD47B2323390B3200FCCA4A /* passengerWithDriver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = passengerWithDriver.json; sourceTree = "<group>"; };
 		B3D74910346ABA7D1BC77DF3 /* Pods_Unrealm_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unrealm_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6DEFEE7523B3B473A95A84 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F659F57B1BD58EE9DF53B8E2 /* Pods-Unrealm_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unrealm_Example.debug.xcconfig"; path = "Target Support Files/Pods-Unrealm_Example/Pods-Unrealm_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +151,8 @@
 		607FACE91AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFD47B2123390A1900FCCA4A /* passenger.json */,
+				AFD47B2323390B3200FCCA4A /* passengerWithDriver.json */,
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -161,6 +171,7 @@
 		757C87F022905A2800BF03A7 /* ExampleModels */ = {
 			isa = PBXGroup;
 			children = (
+				AFD47B262339115100FCCA4A /* Codable */,
 				757C87F122905A2800BF03A7 /* Location.swift */,
 				757C87F222905A2800BF03A7 /* User.swift */,
 				757C87FF2292BF1600BF03A7 /* Dog.swift */,
@@ -193,6 +204,15 @@
 				75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		AFD47B262339115100FCCA4A /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				AFD47B1C233902C500FCCA4A /* Driver.swift */,
+				AFD47B1B233902C500FCCA4A /* Passenger.swift */,
+			);
+			path = Codable;
 			sourceTree = "<group>";
 		};
 		D104A7EFF844BE8722692D72 /* Frameworks */ = {
@@ -312,6 +332,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD47B2523390B3400FCCA4A /* passenger.json in Resources */,
+				AFD47B2423390B3200FCCA4A /* passengerWithDriver.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +431,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				750EC15622CAA52A005CBAE8 /* Person.swift in Sources */,
+				AFD47B20233902C500FCCA4A /* Driver.swift in Sources */,
 				757C87F522905A2E00BF03A7 /* Location.swift in Sources */,
+				AFD47B1E233902C500FCCA4A /* Passenger.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */,
 				757C87F622905A2E00BF03A7 /* User.swift in Sources */,
