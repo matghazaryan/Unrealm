@@ -2,8 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Unrealm_Example' do
-  pod 'Unrealm', :path => '../'
-  pod 'RealmSwift', '3.17.3'
+  pod 'Unrealm', :path => '../'  
   pod 'Runtime', '2.1.0'
   
   target 'Unrealm_Tests' do
