@@ -37,7 +37,7 @@ Made with ❤️ by <a href="https://github.com/arturdev">arturdev</a>
 <br>
 
 ## Features
-Unrealm support the following types:
+Unrealm supports the following types:
 
 - [x] Swift Primitives
 - [x] Swift Structs
