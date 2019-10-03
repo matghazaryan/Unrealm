@@ -237,7 +237,7 @@ public extension Realm {
     }
 }
 
-fileprivate func exctractTypeComponents<Subject>(from subject: Subject) -> (String, String) {
+internal func exctractTypeComponents<Subject>(from subject: Subject) -> (String, String) {
     var fullType = String(describing: subject)
     if let match = fullType.range(of: "[a-zA-Z0-9_.]+", options: .regularExpression) {
         fullType = String(fullType[match])

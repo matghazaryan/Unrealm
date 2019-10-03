@@ -82,7 +82,8 @@ public protocol RealmableBase {
     mutating func readValues(from obj: Object)
     func toObject() -> Object?
     static var realmClassPrefix: String {get}
-    
+    static func className() -> String
+
     /**
      Implement this method to specify the name of a property to be used as the primary key.
      
@@ -110,8 +111,7 @@ public protocol RealmableBase {
      - returns: An array of property names.
      */
     static func indexedProperties() -> [String]
-    
-    
+
     init()
 }
 
@@ -119,6 +119,11 @@ public extension RealmableBase {
     static var realmClassPrefix: String {
         return "RLM"
     }
+
+	static func className() -> String {
+		let typeName = exctractTypeComponents(from: self).1
+		return realmClassPrefix + typeName
+	}
     
     internal func objectType() -> Object.Type? {
         var className = ""
