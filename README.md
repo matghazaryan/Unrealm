@@ -111,6 +111,10 @@ You will also need to set your desired version or branch (e.g. master).
 
 ## Contribution
 
+⭐️ If you like what you see, star us on GitHub.
+
+Find a bug, a typo, or something that’s not documented well? We’d love for you to open an issue telling me what I can improve!
+
 Contributions are welcome, and they are greatly appreciated!
 
 
