@@ -48,6 +48,7 @@ Unrealm supports the following types:
 - [x] Swift Optionals (String, Data, Date)
 - [x] Nested Classes/Structs
 - [x] Swift Optionals of primitives (Int, Float, Double, Bool)
+- [ ] Swift Arrays of enums [Issue #13](https://github.com/arturdev/Unrealm/issues/13#issuecomment-541522533)
 
 
 ## Example Project
