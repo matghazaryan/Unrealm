@@ -68,9 +68,9 @@ void addPropertyToClass(Class className, NSString *name, NSString *typeName) {
     objc_property_attribute_t type = { "T", [typeStr UTF8String]};
     objc_property_attribute_t backingIvar = { "V", [ivarName UTF8String]};
     objc_property_attribute_t dynamic = { "D", ""};
-    objc_property_attribute_t nonNull = { "N", ""};
+    objc_property_attribute_t nonAtomic = { "N", ""};
     objc_property_attribute_t and = { "&", ""};
-    objc_property_attribute_t attrs[] = { type, dynamic, nonNull, backingIvar, and };
+    objc_property_attribute_t attrs[] = { type, dynamic, nonAtomic, backingIvar, and };
     if (!class_addProperty(className, [name UTF8String], attrs, 5)) {
         return;
     }
@@ -146,11 +146,3 @@ void addClassMethodToClass(Class _Nonnull className, NSString * _Nonnull selecto
     });
     class_addMethod(class, NSSelectorFromString(selectorName), imp, nil);
 }
-
-@implementation NSObject (LoadExtension)
-
-+ (void)load {
-//    NSLog(@"%@", self);
-}
-
-@end

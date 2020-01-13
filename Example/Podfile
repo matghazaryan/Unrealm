@@ -2,8 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Unrealm_Example' do
-  pod 'Unrealm', :path => '../'  
-  pod 'Runtime', '2.1.0'
+  pod 'Unrealm', :path => '../'    
   
   target 'Unrealm_Tests' do
     inherit! :search_paths
