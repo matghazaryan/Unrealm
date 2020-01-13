@@ -11,4 +11,4 @@ before_install:
 - pod repo update
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild -workspace Example/Unrealm.xcworkspace -scheme Unrealm-Example  -destination "OS=13.3,name=iPhone 11 Pro Max" -configuration Release  ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES clean test | xcpretty
+- set -o pipefail && xcodebuild -workspace Example/Unrealm.xcworkspace -scheme Unrealm-Example  -destination "OS=13.3,name=iPhone 11 Pro Max" -configuration Release -UseModernBuildSystem=NO ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES clean test | xcpretty
