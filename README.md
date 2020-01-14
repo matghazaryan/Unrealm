@@ -21,6 +21,9 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
 </a>
+<a href="https://cocoapods.org/pods/Unrealm">
+<img src="https://img.shields.io/badge/RealmCocoa-v4.3.0-green?style=flat" alt="Platform">
+</a> 
 </p>
 
 <br/>
