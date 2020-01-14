@@ -181,6 +181,8 @@ public extension Realm {
      - parameter realmables: Types to be registereds
     */
     static func registerRealmables(_ realmables: [RealmableBase.Type]) {
+		prepareUnrealm()
+		
         //Creating all classes
         realmables.forEach({
             var superClass: AnyClass = Object.self

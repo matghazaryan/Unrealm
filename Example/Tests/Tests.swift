@@ -13,11 +13,14 @@ class Tests: XCTestCase {
     private static func configRealm() -> Realm.Configuration {
         let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self]
         Realm.registerRealmables(realmableTypes)
+
+		var objectTypes = realmableTypes.compactMap({$0.objectType()})
+		objectTypes.append(RLMTestClass.self)
         let config = Realm.Configuration(fileURL: URL(fileURLWithPath: RLMRealmPathForFile("unrealm_tests.realm")),
                                                       schemaVersion: 1,
                                                       migrationBlock: nil,
                                                       deleteRealmIfMigrationNeeded: true,
-                                                      objectTypes: realmableTypes.compactMap({$0.objectType()}))
+													  objectTypes: objectTypes)
 
         return config
     }
@@ -221,5 +224,19 @@ class Tests: XCTestCase {
 			XCTAssertEqual(user.list[i].lat, savedUser!.list[i].lat)
 			XCTAssertEqual(user.list[i].lng, savedUser!.list[i].lng)
 		}
+	}
+
+	func testOldRealm() {
+		let obj = RLMTestClass()
+		obj.name = "Some Name"
+		try! self.realm.write {
+			self.realm.add(obj)
+		}
+
+		let savedObj = self.realm.objects(RLMTestClass.self).last
+		XCTAssertNotNil(savedObj)
+		XCTAssertEqual(obj.id, savedObj!.id)
+		XCTAssertEqual(obj.name, savedObj!.name)
+
 	}
 }

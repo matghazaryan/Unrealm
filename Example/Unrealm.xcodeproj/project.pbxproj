@@ -22,6 +22,7 @@
 		75D4AEEF229B1DCB0038C8C4 /* UserInputAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */; };
 		75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C87FF2292BF1600BF03A7 /* Dog.swift */; };
 		7D9FC8C49B6F7886C1585B84 /* Pods_Unrealm_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3BBE4A361CD46CD5A0BD6D /* Pods_Unrealm_Tests.framework */; };
+		AFA449A323CDE6A2003845CA /* RLMTestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA449A123CDE69E003845CA /* RLMTestClass.swift */; };
 		AFD47B1E233902C500FCCA4A /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD47B1B233902C500FCCA4A /* Passenger.swift */; };
 		AFD47B20233902C500FCCA4A /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD47B1C233902C500FCCA4A /* Driver.swift */; };
 		AFD47B2423390B3200FCCA4A /* passengerWithDriver.json in Resources */ = {isa = PBXBuildFile; fileRef = AFD47B2323390B3200FCCA4A /* passengerWithDriver.json */; };
@@ -64,6 +65,7 @@
 		75D4AEE9229B1BDD0038C8C4 /* ToDoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListController.swift; sourceTree = "<group>"; };
 		75D4AEEC229B1DCB0038C8C4 /* UITableView+RealmChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+RealmChanges.swift"; sourceTree = "<group>"; };
 		75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputAlert.swift; sourceTree = "<group>"; };
+		AFA449A123CDE69E003845CA /* RLMTestClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMTestClass.swift; sourceTree = "<group>"; };
 		AFD47B1B233902C500FCCA4A /* Passenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
 		AFD47B1C233902C500FCCA4A /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		AFD47B2123390A1900FCCA4A /* passenger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = passenger.json; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				757C87F222905A2800BF03A7 /* User.swift */,
 				757C87FF2292BF1600BF03A7 /* Dog.swift */,
 				750EC15422CAA44B005CBAE8 /* Person.swift */,
+				AFA449A123CDE69E003845CA /* RLMTestClass.swift */,
 			);
 			path = ExampleModels;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				AFD47B1E233902C500FCCA4A /* Passenger.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */,
+				AFA449A323CDE6A2003845CA /* RLMTestClass.swift in Sources */,
 				757C87F622905A2E00BF03A7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
