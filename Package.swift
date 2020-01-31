@@ -14,8 +14,8 @@ let package = Package(
     targets: [
         .target(
             name: "UnrealmObjC",
-            path: "Unrealm/Classes/ObjC",
-            dependencies: ["Realm", "RealmSwift"]            
+            dependencies: ["Realm", "RealmSwift"],
+            path: "Unrealm/Classes/ObjC"
         ),
         .target(
             name: "Unrealm",
