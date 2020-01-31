@@ -99,7 +99,7 @@ it, simply add the following line to your Podfile:
 pod 'Unrealm'
 ```
 
-### Swift Package Manager
+### Swift Package Manager (till v0.2.5)
 You can also use Swift Package Manager to add Unrealm as a dependency to your project. In order to do so, use the following URL:
 
 ```bash
