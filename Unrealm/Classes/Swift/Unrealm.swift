@@ -310,8 +310,9 @@ public extension Realmable {
                         if let t = property.type as? RealmableEnum.Type, let val = t.init(rlmValue: value) {
                             try property.set(value: val, on: &self)
                         } else if child.value is [AnyHashable:Any], let data = value as? Data {
-                            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                            try property.set(value: json, on: &self)
+							if let json = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
+								try property.set(value: json, on: &self)
+							}
                         } else {
                             try property.set(value: value, on: &self)
                         }
@@ -399,9 +400,14 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
                     obj.setValue(value, forKey: label)
                 }
             } else if let dic = value as? [AnyHashable:Any] {
-                if let data = try? JSONSerialization.data(withJSONObject: dic, options: []) {
-                    obj.setValue(data, forKey: label)
-                }
+				if #available(iOS 11.0, *) {
+					if let data = try? NSKeyedArchiver.archivedData(withRootObject: dic, requiringSecureCoding: true) {
+						obj.setValue(data, forKey: label)
+					}
+				} else {
+					let data = NSKeyedArchiver.archivedData(withRootObject: dic)
+					obj.setValue(data, forKey: label)
+				}
             } else {
 				//TODO: check if optional primitives
 				if let number = NSNumber(value: value) {

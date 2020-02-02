@@ -113,6 +113,7 @@ class Tests: XCTestCase {
                         locOptional: Location(lat: 5.5, lng: 6.6),
                         enumVal: .case2,
                         dic: ["x" : 1, "y" : "y"],
+						dicInt: [1 : 1, 2 : 2, 3 : 3],
 						intOptional: 3,
 						floatOptional: 3.4,
 						doubleOptional: 1.3,
@@ -135,6 +136,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(user.locOptional?.lng, savedUser!.locOptional?.lng)
         XCTAssertEqual(user.enumVal, savedUser!.enumVal)
         XCTAssertEqual(NSDictionary(dictionary: user.dic), NSDictionary(dictionary: savedUser!.dic))
+		XCTAssertEqual(NSDictionary(dictionary: user.dicInt), NSDictionary(dictionary: savedUser!.dicInt))
         XCTAssertEqual(user.intOptional, savedUser!.intOptional)
 
         XCTAssertEqual(user.list.count, savedUser!.list.count)

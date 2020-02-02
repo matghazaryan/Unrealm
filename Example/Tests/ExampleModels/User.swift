@@ -25,6 +25,7 @@ struct User: Realmable {
     var locOptional: Location? = nil
     var enumVal: MyEnum = .case1    
     var dic: [String:Any] = [:]
+	var dicInt: [Int:Int] = [:]
 	var intOptional: Int? = nil
 	var floatOptional: Float? = nil
 	var doubleOptional: Double? = nil
