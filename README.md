@@ -14,7 +14,7 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/v/Unrealm.svg?style=flat" alt="Version">
 </a>
-<img src="https://img.shields.io/badge/spm-v1.0.4-orange.svg?style=flat" alt="Platform">
+<img src="https://img.shields.io/badge/spm-v1.0.3-orange.svg?style=flat" alt="Platform">
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/l/Unrealm.svg?style=flat" alt="License">
 </a>
