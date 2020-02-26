@@ -13,6 +13,60 @@ import RealmSwift
 import UnrealmObjC
 #endif
 
+public struct AnyResults: RandomAccessCollection {
+	public typealias Element = Realmable
+    public typealias Index = Int
+
+    public subscript(position: Int) -> Element {
+        let res = rlmResult[position].toRealmable() as! Element
+        res.setRealm(rlmResult.realm)
+        return res
+    }
+
+    public func index(after i: Int) -> Int {
+        return rlmResult.index(after: i)
+    }
+
+	public var startIndex: Index {
+        return rlmResult.startIndex
+    }
+
+    public var endIndex: Index {
+        return rlmResult.endIndex
+    }
+
+    public var last: Element? {
+        return rlmResult.last?.toRealmable() as? Element
+    }
+
+	public var count: Int {
+		return rlmResult.count
+	}
+
+	internal let rlmResult: RealmSwift.Results<Object>
+
+    internal init(rlmResult: RealmSwift.Results<Object>) {
+        self.rlmResult = rlmResult
+    }
+
+    public func observe(_ block: @escaping (RealmCollectionChange<AnyResults>) -> Void) -> NotificationToken {
+        return rlmResult.observe({ (change) in
+            switch change {
+            case .error(let error):
+                block(RealmCollectionChange.error(error))
+            case .initial(let collection):
+                block(RealmCollectionChange.initial(AnyResults(rlmResult: collection)))
+            case .update(let collection, deletions: let deletions, insertions: let insertions, modifications: let modifications):				
+                block(RealmCollectionChange.update(AnyResults(rlmResult: collection), deletions: deletions, insertions: insertions, modifications: modifications))
+            }
+        })
+    }
+
+	public func toArray() -> Array<Realmable> {
+		return rlmResult.compactMap({$0.toRealmable() as? Realmable})
+	}
+}
+
 public struct Results<Element: Realmable> {
     
     internal let rlmResult: RealmSwift.Results<Object>

@@ -11,7 +11,10 @@ import RealmStorage
 import LocalStorage
 
 typealias Storage = LocalStorage
+typealias StorageResults = LocalStorageResults
+typealias NotificationToken = StorageNotificationToken
 struct StorageProvider {
+
 	enum ProviderType {
 		case realm
 		case coredata //coming soon

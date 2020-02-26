@@ -24,3 +24,18 @@ extension ToDoItem {
         self.text = text
     }
 }
+
+extension ToDoItem {
+
+    @discardableResult
+    static func add(text: String, in storage: LocalStorage) -> ToDoItem {
+		let item = ToDoItem(text)
+		storage.addOrUpdate(value: item)
+		return item
+    }
+
+	mutating func toggleCompleted(in storage: LocalStorage) {
+        isCompleted.toggle()
+		storage.addOrUpdate(value: self)
+    }
+}

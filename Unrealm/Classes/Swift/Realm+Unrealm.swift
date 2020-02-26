@@ -40,7 +40,7 @@ public extension Realm {
         return Unrealm.Results(rlmResult: results)
     }
 	
-	func anyObjectArray(_ type: Realmable.Type) -> [Realmable] {
+	func anyObjectArray(_ type: Realmable.Type) -> AnyResults {
         let fullType = String(reflecting: type)
         var components = fullType.components(separatedBy: ".")
         let typeName = components.removeLast()
@@ -51,7 +51,7 @@ public extension Realm {
         let cls = (NSClassFromString(realmClass) ?? NSClassFromString(realmTypeName)) as! Object.Type
         
         let results = self.objects(cls)
-		return Array(results).compactMap({$0.toRealmable()}).compactMap({$0 as? Realmable})
+		return AnyResults(rlmResult: results)
     }
     
     /**

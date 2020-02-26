@@ -8,9 +8,13 @@
 
 import Foundation
 
-public struct StorageResults<E: StorableBase> {
+public class LocalStorageResults<E: StorableBase> {
+public typealias StorageResultsCollectionChangeCallback = (StorageResultsCollectionChange<LocalStorageResults<E>>) -> Void
+public typealias DidObserveCallback = (@escaping StorageResultsCollectionChangeCallback) -> StorageNotificationToken?
 
-	internal let result: Array<StorableBase>
+	public var didObserveHandler: DidObserveCallback?
+
+	public var result: Array<StorableBase>
     public init(result: Array<StorableBase>) {
         self.result = result
     }
@@ -18,13 +22,13 @@ public struct StorageResults<E: StorableBase> {
 
 //MARK: - Collection
 
-extension StorageResults: RangeReplaceableCollection {
-	public init() {
-		result = []
-	}
-}
+//extension LocalStorageResults: RangeReplaceableCollection {
+//	public init() {
+//		result = []
+//	}
+//}
 
-extension StorageResults: Collection {
+extension LocalStorageResults: Collection {
     public typealias Index = Int
     
     public var startIndex: Index {
@@ -46,30 +50,49 @@ extension StorageResults: Collection {
     public func index(after i: Int) -> Int {
         return result.index(after: i)
     }
+
+	public var count: Int {
+		return result.count
+	}
 }
 
 //MARK: - String Convertible
-extension StorageResults: CustomStringConvertible {
+extension LocalStorageResults: CustomStringConvertible {
     public var description: String {
         return Array(self).map({return String(describing: $0)}).joined(separator: "\n")
     }
 }
 
 //MARK: - Sorting
-extension StorageResults {
-	public func sorted<Value: Comparable>(by keyPath: KeyPath<E, Value>, ascending: Bool = true) -> StorageResults<E>
+extension LocalStorageResults {
+	public func sorted<Value: Comparable>(by keyPath: KeyPath<E, Value>, ascending: Bool = true) -> LocalStorageResults<E>
 	{
 		let r = result.map({$0 as! E})
 		if ascending {
-			return StorageResults(result: r.sorted(by: { $0[keyPath: keyPath]  <  $1[keyPath: keyPath] }))
+			result = r.sorted(by: { $0[keyPath: keyPath]  <  $1[keyPath: keyPath] })
+		} else {
+			result = r.sorted(by: { $0[keyPath: keyPath]  >  $1[keyPath: keyPath] })
 		}
-		return StorageResults(result: r.sorted(by: { $0[keyPath: keyPath]  >  $1[keyPath: keyPath] }))
+
+		return self
+	}
+
+	public func sorted(by keyPath: KeyPath<E, Bool>, ascending: Bool = true) -> LocalStorageResults<E>
+	{
+		let r = result.map({$0 as! E})
+		if ascending {
+			result = r.sorted(by: { $0[keyPath: keyPath] && !$1[keyPath: keyPath] })
+		} else {
+			result = r.sorted(by: { !$0[keyPath: keyPath] && $1[keyPath: keyPath] })
+		}
+
+		return self
 	}
 }
 
 
 // MARK: - Notifications
-extension StorageResults {
+extension LocalStorageResults {
     /**
      Registers a block to be called each time the collection changes.
      
@@ -125,24 +148,17 @@ extension StorageResults {
      - parameter block: The block to be called whenever a change occurs.
      - returns: A token which must be held for as long as you want updates to be delivered.
      */
-	public func observe(_ block: @escaping (StorageResultsCollectionChange<StorageResults<E>>) -> Void) -> NotificationToken {
-		return NotificationToken()
+	public func observe(_ block: @escaping (StorageResultsCollectionChange<LocalStorageResults<E>>) -> Void) -> StorageNotificationToken? {
+		return self.didObserveHandler?({[weak self] change in
+			guard let self = self else { return }
+			switch change {			
+			case .update(let new, deletions: _, insertions: _, modifications: _):
+				self.result = Array(new)
+			default: break
+			}
+			block(change)
+		})
     }
-
-	/*
-    public func observe(_ block: @escaping (RealmCollectionChange<Results<Element>>) -> Void) -> NotificationToken {
-        return rlmResult.observe({ (change) in
-            switch change {
-            case .error(let error):
-                block(RealmCollectionChange.error(error))
-            case .initial(let collection):
-                block(RealmCollectionChange.initial(Results(rlmResult: collection)))
-            case .update(let collection, deletions: let deletions, insertions: let insertions, modifications: let modifications):
-                block(RealmCollectionChange.update(Results(rlmResult: collection), deletions: deletions, insertions: insertions, modifications: modifications))
-            }
-        })
-    }
-	*/
 }
 
 
@@ -178,8 +194,16 @@ public enum StorageResultsCollectionChange<CollectionType> {
 }
 
 
-public class NotificationToken {
+public class StorageNotificationToken {
+
+	private let underlying: Any
+	public var onInvalidateHandler: (() -> Void)?
+
+	public init(_ underlying: Any) {
+		self.underlying = underlying
+	}
+
 	public func invalidate() {
-		
+		onInvalidateHandler?()
 	}
 }

@@ -10,7 +10,8 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	
+	var window: UIWindow?
+
 	static var shared = UIApplication.shared.delegate as! AppDelegate
 	
 	var storage = StorageProvider.provide(type: .realm)

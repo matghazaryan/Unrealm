@@ -8,12 +8,13 @@
 
 import Foundation
 import Unrealm
+import Realm
 import LocalStorage
 
 public typealias Realmable = Unrealm.Realmable
 
 extension Storable {
-	static func all(in storage: LocalStorage = RealmStorage.default) -> StorageResults<Self> {
+	static func all(in storage: LocalStorage = RealmStorage.default) -> LocalStorageResults<Self> {
 		return storage.objects(Self.self)
 	}
 	
@@ -27,22 +28,23 @@ extension Storable {
 }
 
 extension LocalStorage where Self == RealmStorage {
-	func objects<T: Storable & Realmable>(_ type: T.Type) -> StorageResults<T> {
-		let rlmResult = self.realm.objects(T.self)
-		let result: StorageResults<T> = StorageResults(result: Array(rlmResult))		
-		return result
-	}
+
 }
 
 public class RealmStorage: LocalStorage {
 	public static let `default` = RealmStorage()
 	private init() {}
-	fileprivate let realm = try! Realm()
+
+	fileprivate var config: Realm.Configuration = .defaultConfiguration
+	fileprivate	lazy var realm: Realm = {
+		return try! Realm(configuration: self.config)
+	}()
+
 		
 	public func addOrUpdate<T>(value: T) where T : Storable {
 		guard let value = value as? Realmable else { return }
 		try! realm.write {
-			realm.add(value)
+			realm.add(value, update: .all)
 		}
 	}
 	
@@ -50,11 +52,32 @@ public class RealmStorage: LocalStorage {
 		values.forEach({self.addOrUpdate(value: $0)})
 	}
 	
-	public func objects<T>(_ type: T.Type) -> StorageResults<T> where T : Storable {
-		guard let type = type as? Realmable.Type else { return StorageResults(result: []) }
-		return StorageResults(result: Array(realm.anyObjectArray(type).compactMap({$0 as? T})))
+	public func objects<T>(_ type: T.Type) -> LocalStorageResults<T> where T : Storable {
+		guard let type = type as? Realmable.Type else { return LocalStorageResults(result: []) }
+		let rlmResult = realm.anyObjectArray(type)
+		let result: LocalStorageResults<T> = LocalStorageResults(result: Array(rlmResult).compactMap({$0 as? T}))
+		result.didObserveHandler = { callback in
+			let token = rlmResult.observe { (change) in
+				switch change {
+				case .initial(let results):
+					let newValue = LocalStorageResults<T>(result: Array(results).compactMap({$0 as? T}))
+					callback(.initial(newValue))
+				case .update(let results, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+					let newValue = LocalStorageResults<T>(result: Array(results).compactMap({$0 as? T}))
+					callback(.update(newValue, deletions: deletions, insertions: insertions, modifications: modifications))
+				case .error(let error):
+					callback(.error(error))
+				}
+			}
+			let storageToken = StorageNotificationToken(token)
+			storageToken.onInvalidateHandler = {
+				token.invalidate()
+			}
+			return storageToken
+		}
+		return result
 	}
-	
+
 	public func object<T, KeyType>(_ type: T.Type, forPrimaryKey key: KeyType) -> T? where T : Storable {
 		guard let type = type as? Realmable.Type else { return nil }
 		return realm.anyObject(type, forPrimaryKey: key) as? T
@@ -72,6 +95,17 @@ public class RealmStorage: LocalStorage {
 	}
 	
 	public func registerStorables(_ storables: StorableBase.Type...) {
-		Realm.registerRealmables(storables.compactMap({$0 as? RealmableBase.Type}))
+		let realmableTypes = storables.compactMap({$0 as? RealmableBase.Type})
+		Realm.registerRealmables(realmableTypes)
+
+		let objectTypes = realmableTypes.compactMap({$0.objectType()})
+        let config = Realm.Configuration(fileURL: URL(fileURLWithPath: RLMRealmPathForFile("unrealm_example_abstr.realm")),
+                                                      schemaVersion: 1,
+                                                      migrationBlock: nil,
+                                                      deleteRealmIfMigrationNeeded: true,
+													  objectTypes: objectTypes)
+		self.config = config
 	}
+
+	
 }

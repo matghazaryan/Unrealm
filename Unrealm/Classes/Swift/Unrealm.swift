@@ -128,7 +128,7 @@ public extension RealmableBase {
 		return realmClassPrefix + typeName
 	}
     
-    internal func objectType() -> Object.Type? {
+    func objectType() -> Object.Type? {
         var className = ""
         for key in objectsAndRealmables.keys {
             if objectsAndRealmables[key] == type(of: self) {
@@ -145,7 +145,7 @@ public extension RealmableBase {
         return cls
     }
     
-    internal static func objectType() -> Object.Type? {
+	static func objectType() -> Object.Type? {
         var className = ""
         for key in objectsAndRealmables.keys {
             if objectsAndRealmables[key] == self {

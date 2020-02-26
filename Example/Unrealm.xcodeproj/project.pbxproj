@@ -22,6 +22,10 @@
 		75D4AEEE229B1DCB0038C8C4 /* UITableView+RealmChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEEC229B1DCB0038C8C4 /* UITableView+RealmChanges.swift */; };
 		75D4AEEF229B1DCB0038C8C4 /* UserInputAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */; };
 		75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757C87FF2292BF1600BF03A7 /* Dog.swift */; };
+		75F16D9E2406DF2C00610F0A /* UITableView+RealmChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEEC229B1DCB0038C8C4 /* UITableView+RealmChanges.swift */; };
+		75F16D9F2406DF3100610F0A /* UserInputAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */; };
+		75F16DA32406DFFB00610F0A /* ToDoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F16DA12406DFFB00610F0A /* ToDoListController.swift */; };
+		75F16DA42406DFFB00610F0A /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F16DA22406DFFB00610F0A /* ToDoTableViewCell.swift */; };
 		7D9FC8C49B6F7886C1585B84 /* Pods_Unrealm_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3BBE4A361CD46CD5A0BD6D /* Pods_Unrealm_Tests.framework */; };
 		A20E3EC97431563B9CB72B54 /* Pods_RealmStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B25327E819E34ADC12AAB5F /* Pods_RealmStorage.framework */; };
 		AF4394812406BE26000F23FD /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43947F2406BDE7000F23FD /* Results.swift */; };
@@ -29,7 +33,6 @@
 		AF6A48432406ACED0000D9A1 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF26048D240684820015DFFA /* LocalStorage.swift */; };
 		AF6A48442406AD090000D9A1 /* LocalStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF6A48362406ACD80000D9A1 /* LocalStorage.framework */; };
 		AFA3A3CB2406B18900466710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3A3CA2406B18900466710 /* AppDelegate.swift */; };
-		AFA3A3CF2406B18900466710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA3A3CE2406B18900466710 /* ViewController.swift */; };
 		AFA3A3D22406B18900466710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA3A3D02406B18900466710 /* Main.storyboard */; };
 		AFA3A3D42406B18A00466710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFA3A3D32406B18A00466710 /* Assets.xcassets */; };
 		AFA3A3D72406B18A00466710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA3A3D52406B18A00466710 /* LaunchScreen.storyboard */; };
@@ -124,6 +127,8 @@
 		75D4AEE9229B1BDD0038C8C4 /* ToDoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListController.swift; sourceTree = "<group>"; };
 		75D4AEEC229B1DCB0038C8C4 /* UITableView+RealmChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+RealmChanges.swift"; sourceTree = "<group>"; };
 		75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInputAlert.swift; sourceTree = "<group>"; };
+		75F16DA12406DFFB00610F0A /* ToDoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoListController.swift; sourceTree = "<group>"; };
+		75F16DA22406DFFB00610F0A /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		AF26048D240684820015DFFA /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		AF43947F2406BDE7000F23FD /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		AF6A48202406AC260000D9A1 /* RealmStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealmStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +140,6 @@
 		AF6A48392406ACD80000D9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3A3C82406B18900466710 /* Example with Abstraction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example with Abstraction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA3A3CA2406B18900466710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFA3A3CE2406B18900466710 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AFA3A3D12406B18900466710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFA3A3D32406B18A00466710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFA3A3D62406B18A00466710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -318,6 +322,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		75F16DA02406DFB700610F0A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				75F16DA12406DFFB00610F0A /* ToDoListController.swift */,
+				75F16DA22406DFFB00610F0A /* ToDoTableViewCell.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		AF6A48212406AC260000D9A1 /* RealmStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,13 +371,13 @@
 		AFA3A3C92406B18900466710 /* Example with Abstraction */ = {
 			isa = PBXGroup;
 			children = (
-				AFA3A3E82406B42D00466710 /* Supporting Files */,
 				AFA3A3E72406B42500466710 /* Entities */,
 				AF6A48372406ACD80000D9A1 /* LocalStorage */,
 				AF6A48212406AC260000D9A1 /* RealmStorage */,
-				AFA3A3CE2406B18900466710 /* ViewController.swift */,
+				75F16DA02406DFB700610F0A /* Scenes */,
 				AFA3A3D02406B18900466710 /* Main.storyboard */,
 				AFA3A3EB2406B4EE00466710 /* StorageProvider.swift */,
+				AFA3A3E82406B42D00466710 /* Supporting Files */,
 			);
 			path = "Example with Abstraction";
 			sourceTree = "<group>";
@@ -839,8 +852,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFA3A3EC2406B4EE00466710 /* StorageProvider.swift in Sources */,
-				AFA3A3CF2406B18900466710 /* ViewController.swift in Sources */,
+				75F16D9F2406DF3100610F0A /* UserInputAlert.swift in Sources */,
+				75F16DA42406DFFB00610F0A /* ToDoTableViewCell.swift in Sources */,
 				AFA3A3CB2406B18900466710 /* AppDelegate.swift in Sources */,
+				75F16DA32406DFFB00610F0A /* ToDoListController.swift in Sources */,
+				75F16D9E2406DF2C00610F0A /* UITableView+RealmChanges.swift in Sources */,
 				AFA3A3EA2406B46B00466710 /* ToDoItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
