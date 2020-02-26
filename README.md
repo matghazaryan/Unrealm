@@ -21,8 +21,8 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
 </a>
-<a href="https://github.com/realm/realm-cocoa/releases/tag/v4.3.1">
-<img src="https://img.shields.io/badge/RealmCocoa-v4.3.1-green?style=flat" alt="Platform">
+<a href="https://github.com/realm/realm-cocoa/releases/tag/v4.3.2">
+<img src="https://img.shields.io/badge/RealmCocoa-v4.3.2-green?style=flat" alt="Platform">
 </a> 
 </p>
 
