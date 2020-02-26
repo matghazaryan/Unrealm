@@ -3,7 +3,7 @@
 //  Unrealm_Example
 //
 //  Created by Artur Mkrtchyan on 1/14/20.
-//  Copyright © 2020 CocoaPods. All rights reserved.
+//  Copyright © 2020 arturdev. All rights reserved.
 //
 
 import UIKit

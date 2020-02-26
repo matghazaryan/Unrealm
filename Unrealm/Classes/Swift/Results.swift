@@ -13,7 +13,7 @@ import RealmSwift
 import UnrealmObjC
 #endif
 
-public struct Results<Element: RealmableBase > {
+public struct Results<Element: Realmable> {
     
     internal let rlmResult: RealmSwift.Results<Object>
     internal init(rlmResult: RealmSwift.Results<Object>) {

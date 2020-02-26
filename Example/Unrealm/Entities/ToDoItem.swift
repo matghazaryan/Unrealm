@@ -8,7 +8,6 @@
 
 import Foundation
 import Unrealm
-import RealmSwift
 
 struct ToDoItem: Realmable {
     var id = UUID().uuidString

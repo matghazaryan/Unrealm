@@ -11,6 +11,9 @@ import RealmSwift
 import Realm
 import Runtime
 
+public typealias Realm = RealmSwift.Realm
+public typealias NotificationToken = RealmSwift.NotificationToken
+
 #if canImport(UnrealmObjC)
 import UnrealmObjC
 #endif
@@ -248,7 +251,7 @@ public extension RealmableBase {
     }
 }
 
-public protocol Realmable: RealmableBase,  RealmCollectionValue {
+public protocol Realmable: RealmableBase {
     
 }
 

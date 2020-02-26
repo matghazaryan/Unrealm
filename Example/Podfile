@@ -6,7 +6,15 @@ target 'Unrealm_Example' do
   
   target 'Unrealm_Tests' do
     inherit! :search_paths
-
-    
   end
+end
+
+target 'Example with Abstraction' do
+    
+  target 'RealmStorage' do
+		inherit! :search_paths
+		
+		pod 'Unrealm', :path => '../'
+	end
+
 end

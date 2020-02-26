@@ -39,6 +39,20 @@ public extension Realm {
         let results = self.objects(cls)
         return Unrealm.Results(rlmResult: results)
     }
+	
+	func anyObjectArray(_ type: Realmable.Type) -> [Realmable] {
+        let fullType = String(reflecting: type)
+        var components = fullType.components(separatedBy: ".")
+        let typeName = components.removeLast()
+        let realmTypeName = type.realmClassPrefix + typeName
+        components.append(realmTypeName)
+        
+        let realmClass = components.joined(separator: ".")
+        let cls = (NSClassFromString(realmClass) ?? NSClassFromString(realmTypeName)) as! Object.Type
+        
+        let results = self.objects(cls)
+		return Array(results).compactMap({$0.toRealmable()}).compactMap({$0 as? Realmable})
+    }
     
     /**
      Retrieves the single instance of a given object type with the given primary key from the Realm.
@@ -58,6 +72,13 @@ public extension Realm {
         }
         return self.object(ofType: objectType, forPrimaryKey: key)?.toRealmable() as? RealmableElement
     }
+	
+	func anyObject<KeyType>(_ type: Realmable.Type, forPrimaryKey key: KeyType) -> Realmable? {
+		guard let objectType = type.objectType() else {
+            fatalError()
+        }
+		return self.object(ofType: objectType, forPrimaryKey: key)?.toRealmable() as? Realmable
+	}
     
     // MARK: Adding and Creating objects
     
@@ -79,7 +100,7 @@ public extension Realm {
      key), and update it. Otherwise, the object will be added.
      */
 	@available(*, deprecated, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
-    func add<RealmableElement: Realmable>(_ realmable: RealmableElement, update: Bool) {
+    func add(_ realmable: Realmable, update: Bool) {
 		add(realmable, update: update ? .all : .error)
     }
 
@@ -106,7 +127,7 @@ public extension Realm {
 	- parameter update: What to do if an object with the same primary key alredy exists. Must be `.error` for objects
 	without a primary key.
 	*/
-	func add<RealmableElement: Realmable>(_ realmable: RealmableElement, update: UpdatePolicy = .error) {
+	func add(_ realmable: Realmable, update: UpdatePolicy = .error) {
 		guard let obj = realmable.toObject() else {
 			fatalError("Cannot convert \(realmable) to Object")
 		}
@@ -139,12 +160,12 @@ public extension Realm {
      
      - parameter object: The object to be deleted.
      */
-    func delete<RealmableElement: RealmableBase>(_ realmable: RealmableElement) {
+    func delete(_ realmable: Realmable) {
         guard let obj = realmable.toObject() else {
             fatalError("Cannot convert \(realmable) to Object")
         }
-        
-        guard let objectType = RealmableElement.objectType(), let pk = RealmableElement.primaryKey() else {
+        				
+        guard let objectType = realmable.objectType(), let pk = type(of: realmable).primaryKey() else {
             fatalError("Only objects with primary keys can be deleted from realm")
         }
         guard let pkValue = obj.value(forKey: pk) else {return}

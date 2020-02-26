@@ -8,7 +8,6 @@
 
 import UIKit
 import Unrealm
-import RealmSwift
 
 class ToDoListController: UITableViewController {
     
