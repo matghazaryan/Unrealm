@@ -373,7 +373,7 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
         let value = $0.value
         if value is RealmableBase {
             guard let className = propertyClassName(label, objectType) else {return}
-            let fullClassName = objectsAndRealmables.keys.first(where: {$0.contains(className)}) ?? className
+            let fullClassName = objectsAndRealmables.keys.first(where: {$0 == className}) ?? className
             guard let c = NSClassFromString(fullClassName) as? NSObject.Type else {return}
 			if let opt = value as? OptionalPrtc, (opt.val is NSNull) {
 				return
@@ -390,7 +390,7 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
                     values.forEach({value in
                         if value is RealmableBase {
                             guard let className = realmArray.objectClassName else {return}
-                            let fullClassName = objectsAndRealmables.keys.first(where: {$0.contains(className)}) ?? className
+                            let fullClassName = objectsAndRealmables.keys.first(where: {$0 == className}) ?? className
                             guard let c = NSClassFromString(fullClassName) as? NSObject.Type else {return}
                             if let o = convert(val: value, to: c) {
                                 realmArray.add(o)

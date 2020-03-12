@@ -18,3 +18,19 @@ target 'Example with Abstraction' do
 	end
 
 end
+
+post_install do |installer|
+	installer.pods_project.targets.each do |target|
+
+		#Fixing compile warning caused by CRuntime dependency
+    if target.name == 'CRuntime'
+        source_files = target.source_build_phase.files
+        dummy = source_files.find do |file|
+            file.file_ref.name == 'module.modulemap'
+        end
+        source_files.delete dummy
+        puts "Deleting source file #{dummy.inspect} from target #{target.inspect}."
+    end
+  end
+end
+
