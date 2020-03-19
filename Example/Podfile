@@ -1,7 +1,7 @@
-platform :ios, '9.0'
 use_frameworks!
 
 target 'Unrealm_Example' do
+	platform :ios, '9.0'
   pod 'Unrealm', :path => '../'    
   
   target 'Unrealm_Tests' do
@@ -10,7 +10,7 @@ target 'Unrealm_Example' do
 end
 
 target 'Example with Abstraction' do
-    
+	platform :ios, '9.0'
   target 'RealmStorage' do
 		inherit! :search_paths
 		
@@ -19,18 +19,10 @@ target 'Example with Abstraction' do
 
 end
 
-post_install do |installer|
-	installer.pods_project.targets.each do |target|
 
-		#Fixing compile warning caused by CRuntime dependency
-    if target.name == 'CRuntime'
-        source_files = target.source_build_phase.files
-        dummy = source_files.find do |file|
-            file.file_ref.name == 'module.modulemap'
-        end
-        source_files.delete dummy
-        puts "Deleting source file #{dummy.inspect} from target #{target.inspect}."
-    end
-  end
+target 'Example with Mac' do
+	platform :osx, '10.12'
+  pod 'Unrealm', :path => '../'
+
 end
 

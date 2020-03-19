@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 import Realm
-import Runtime
+import RuntimeNew
 
 public typealias Realm = RealmSwift.Realm
 public typealias NotificationToken = RealmSwift.NotificationToken
@@ -403,6 +403,8 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
                     obj.setValue(value, forKey: label)
                 }
             } else if let dic = value as? [AnyHashable:Any] {
+
+				#if os(iOS)
 				if #available(iOS 11.0, *) {
 					if let data = try? NSKeyedArchiver.archivedData(withRootObject: dic, requiringSecureCoding: true) {
 						obj.setValue(data, forKey: label)
@@ -411,6 +413,16 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
 					let data = NSKeyedArchiver.archivedData(withRootObject: dic)
 					obj.setValue(data, forKey: label)
 				}
+				#elseif os(OSX)
+				if #available(OSX 10.13, *) {
+					if let data = try? NSKeyedArchiver.archivedData(withRootObject: dic, requiringSecureCoding: true) {
+						obj.setValue(data, forKey: label)
+					}
+				} else {
+					let data = NSKeyedArchiver.archivedData(withRootObject: dic)
+					obj.setValue(data, forKey: label)
+				}
+				#endif
             } else {
 				//TODO: check if optional primitives
 				if let number = NSNumber(value: value) {

@@ -29,8 +29,7 @@ extension ToDoItem {
 
 extension ToDoItem {
     static func all(in realm: Realm = try! Realm()) -> Unrealm.Results<ToDoItem> {
-        return realm.objects(ToDoItem.self)
-            .sorted(byKeyPath: "isCompleted")
+        return realm.objects(ToDoItem.self)            
     }
     
     @discardableResult

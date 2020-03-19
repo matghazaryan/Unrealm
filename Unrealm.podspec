@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
   s.swift_version    = '5.1'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
   s.description      = <<-DESC
 Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.
@@ -29,6 +29,7 @@ Getting rid of boilerplate code such @objc dynamic var. Use just var or let
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.12'
 
   s.source_files = 'Unrealm/Classes/**/*.{h,m,swift}'
   
@@ -36,5 +37,5 @@ Getting rid of boilerplate code such @objc dynamic var. Use just var or let
   # s.public_header_files = 'Pod/Classes/**/*.h'
 
   s.dependency 'RealmSwift', '4.3.2'
-  s.dependency 'Runtime', '2.1.1'
+  s.dependency 'RuntimeNew', '2.1.5'
 end

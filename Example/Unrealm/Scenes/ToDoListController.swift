@@ -18,7 +18,7 @@ class ToDoListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = ToDoItem.all()
+        items = ToDoItem.all().sorted(byKeyPath: "isCompleted")
     }
     
     override func viewWillAppear(_ animated: Bool) {
