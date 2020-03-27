@@ -6,7 +6,7 @@
 
 <p align="center">
 <a href="https://developer.apple.com/swift/">
-<img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0">
+<img src="https://img.shields.io/badge/Swift-5.1-orange.svg?style=flat" alt="Swift 5.1">
 </a>
 <a href="https://travis-ci.com/arturdev/Unrealm">
 <img src="https://travis-ci.com/arturdev/Unrealm.svg?branch=master" alt="Build Status">
@@ -21,8 +21,8 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
 </a>
-<a href="https://github.com/realm/realm-cocoa/releases/tag/v4.3.2">
-<img src="https://img.shields.io/badge/RealmCocoa-v4.3.2-green?style=flat" alt="Platform">
+<a href="https://github.com/realm/realm-cocoa/releases/tag/v4.4.0">
+<img src="https://img.shields.io/badge/RealmCocoa-v4.4.0-green?style=flat" alt="Platform">
 </a> 
 </p>
 
@@ -48,10 +48,12 @@ Unrealm supports the following types:
 - [x] Swift Enums
 - [x] Swift Arrays
 - [x] Swift Dictionaries
-- [x] Swift Optionals (String, Data, Date)
 - [x] Nested Classes/Structs
+- [x] Swift Optionals (String, Data, Date)
 - [x] Swift Optionals of primitives (Int, Float, Double, Bool)
-- [ ] Swift Arrays of enums [Issue #13](https://github.com/arturdev/Unrealm/issues/13#issuecomment-541522533)
+- [x] Swift Optionals of Realmables
+- [x] Swift Optionals of Arrays
+- [x] Swift Arrays of enums
 
 
 ## Example Project
@@ -61,7 +63,7 @@ See also <a href="https://github.com/arturdev/Unrealm/blob/master/Example/Tests/
 ## Usage
 All you have to do is 
 1. Conform your Classes/Structs to `Realmable` protocol instead of inheriting from `Object`. Conform your Enums to `RealmableEnum` protocol.
-2. Register your Classes/Structs in AppDelegate's `didFinishLaunchingWithOptions`.
+2. Register your Classes/Structs and Enums in AppDelegate's `didFinishLaunchingWithOptions`.
 ```Swift
 Realm.registerRealmables(ToDoItem.self)
 ```
@@ -76,6 +78,7 @@ Thats it! Now you can store your Struct or Class object into Realm as usualy you
 - Getting rid of Realm crashes like "Realm accessed from incorrect thread"
 - Getting rid of boilerplate code such as `@objc dynamic var`. Use just `var` or `let`
 - Getting rid of boilerplate code such as `RealmOptional<Int>`. Use just `Int?`
+- Works perfect with Swift's Codable and optional types!
 
 #### Cons 🍟
 - Losing "Live Objects" feature. Which means when you modify an object got from Realm the other ones will not be updated automatically. So after modifying an object you should manually update it in realm.
