@@ -30,6 +30,7 @@ struct User: Realmable {
 	var floatOptional: Float? = nil
 	var doubleOptional: Double? = nil
 	var boolOptional: Bool? = nil
+	var arrayOptional: [Location]? = nil
     
     static func primaryKey() -> String? {
         return "id"

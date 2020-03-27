@@ -302,6 +302,7 @@ fileprivate func addProperties(of value: RealmableBase, to className: AnyClass, 
         
         addPropertyToClassIfNeeded(className: className, name: name, typeStr: typeStr)
     }
+	addPropertyToClassIfNeeded(className: className, name: "__nilProperties", typeStr: "Array<String>")
 }
 
 fileprivate func addPropertyToClassIfNeeded(className: AnyObject.Type, name: String, typeStr: String) {
@@ -391,7 +392,7 @@ internal func getRealmArrayType(from type: String) -> String {
     if typeStr.contains("Array<") {
         typeStr = typeStr.replacingOccurrences(of: "Array", with: "RLMArray")
         let generic = getGeneric(from: typeStr)
-            typeStr = typeStr.replacingOccurrences(of: generic, with: "RLM" + generic)
+		typeStr = typeStr.replacingOccurrences(of: generic, with: "RLM" + generic)
     }
     
     return typeStr

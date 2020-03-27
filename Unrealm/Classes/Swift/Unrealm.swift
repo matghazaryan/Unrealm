@@ -267,6 +267,8 @@ public extension Realmable {
         let mirror = Mirror(reflecting: self)
         let children = mirror.childrenIncludingSuperclass(subject: self)
         guard let info = try? typeInfo(of: type(of: self)) else {return}
+
+		let nilProperties = obj.value(forKey: "__nilProperties") as? RLMArray<NSString>
         
         for child in children {
             guard let propertyName = child.label else {continue}
@@ -288,6 +290,10 @@ public extension Realmable {
                 }
             } else {
                 do {
+					if let index = nilProperties?.index(of: propertyName as NSString), index != NSNotFound {
+						continue
+					}
+
                     if value is NSFastEnumeration {
                         let realmArray = value as! RLMArray<AnyObject>                        
                         if realmArray.firstObject() is Object {
@@ -367,10 +373,24 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
     let children = mirror.childrenIncludingSuperclass(subject: val)
 
     let obj = objectType.init()
+	let nilProperties = (obj.value(forKey: "__nilProperties") as! RLMArray<NSString>)
+
     children.filter({$0.label != nil}).forEach({
         let label = $0.label!
         guard obj.responds(to: NSSelectorFromString(label)) else {return}
         let value = $0.value
+
+		if let nilable = value as? OptionalPrtc {
+			if !(nilable.val is NSNull) {
+				let index = nilProperties.index(of: label as NSString)
+				if index != NSNotFound {
+					nilProperties.removeObject(at: index)
+				}
+			} else {
+				nilProperties.add(label as NSString)
+			}
+		}
+
         if value is RealmableBase {
             guard let className = propertyClassName(label, objectType) else {return}
             let fullClassName = objectsAndRealmables.keys.first(where: {$0 == className}) ?? className
@@ -424,11 +444,16 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
 				}
 				#endif
             } else {
-				//TODO: check if optional primitives
 				if let number = NSNumber(value: value) {
 					obj.setValue(number, forKey: label)
 				} else {
-                	obj.setValue(value, forKey: label)
+					if let nilable = value as? OptionalPrtc {
+						if !(nilable.val is NSNull) {
+							obj.setValue(value, forKey: label)
+						}
+					} else {
+						obj.setValue(value, forKey: label)
+					}
 				}
             }
         }

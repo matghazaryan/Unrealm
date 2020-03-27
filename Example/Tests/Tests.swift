@@ -11,7 +11,7 @@ class Tests: XCTestCase {
     }()
     
     private static func configRealm() -> Realm.Configuration {
-        let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self]
+		let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self, ParentStruct.self, ParentStruct.ChildStruct.self]
         Realm.registerRealmables(realmableTypes)
 
 		var objectTypes = realmableTypes.compactMap({$0.objectType()})
@@ -34,6 +34,21 @@ class Tests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+
+	func testNested() {
+		let child = ParentStruct.ChildStruct(id: UUID().uuidString, name: "Child", childEnum: .case2)
+		let parent = ParentStruct(id: UUID().uuidString, name: "Parent", child: child)
+		try! self.realm.write {
+			self.realm.add(parent, update: .all)
+		}
+
+		let savedParent = self.realm.objects(ParentStruct.self).last
+		XCTAssertEqual(parent.id, savedParent?.id)
+		XCTAssertEqual(parent.name, savedParent?.name)
+		XCTAssertEqual(parent.child.id, savedParent?.child.id)
+		XCTAssertEqual(parent.child.name, savedParent?.child.name)
+		XCTAssertEqual(parent.child.childEnum, savedParent?.child.childEnum)
+	}
 
 	func testPassenger() {
 		let url = Bundle(for: type(of: self)).url(forResource: "passenger", withExtension: "json")!
@@ -117,7 +132,8 @@ class Tests: XCTestCase {
 						intOptional: 3,
 						floatOptional: 3.4,
 						doubleOptional: 1.3,
-						boolOptional: true)
+						boolOptional: true,
+						arrayOptional: [loc2, loc3])
 
         try! self.realm.write {
             self.realm.add(user)
@@ -138,6 +154,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(NSDictionary(dictionary: user.dic), NSDictionary(dictionary: savedUser!.dic))
 		XCTAssertEqual(NSDictionary(dictionary: user.dicInt), NSDictionary(dictionary: savedUser!.dicInt))
         XCTAssertEqual(user.intOptional, savedUser!.intOptional)
+		XCTAssertEqual(user.arrayOptional, savedUser!.arrayOptional)
 
         XCTAssertEqual(user.list.count, savedUser!.list.count)
         for i in 0..<user.list.count {

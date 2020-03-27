@@ -23,6 +23,7 @@
 		759706882424183E002BD2EE /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEE2229B19550038C8C4 /* ToDoItem.swift */; };
 		7597068A24241E35002BD2EE /* TableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597068924241E35002BD2EE /* TableCellViewModel.swift */; };
 		7597068C2424218A002BD2EE /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597068B2424218A002BD2EE /* WindowController.swift */; };
+		7597068F242537F8002BD2EE /* NestedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597068D24253791002BD2EE /* NestedStruct.swift */; };
 		75D4AEE3229B19550038C8C4 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEE2229B19550038C8C4 /* ToDoItem.swift */; };
 		75D4AEE6229B1B3B0038C8C4 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEE5229B1B3B0038C8C4 /* ToDoTableViewCell.swift */; };
 		75D4AEEA229B1BDD0038C8C4 /* ToDoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEE9229B1BDD0038C8C4 /* ToDoListController.swift */; };
@@ -139,6 +140,7 @@
 		7597068424241216002BD2EE /* Example_with_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_with_Mac.entitlements; sourceTree = "<group>"; };
 		7597068924241E35002BD2EE /* TableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellViewModel.swift; sourceTree = "<group>"; };
 		7597068B2424218A002BD2EE /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		7597068D24253791002BD2EE /* NestedStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedStruct.swift; sourceTree = "<group>"; };
 		75D4AEE2229B19550038C8C4 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		75D4AEE5229B1B3B0038C8C4 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		75D4AEE9229B1BDD0038C8C4 /* ToDoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListController.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				757C87FF2292BF1600BF03A7 /* Dog.swift */,
 				750EC15422CAA44B005CBAE8 /* Person.swift */,
 				AFA449A123CDE69E003845CA /* RLMTestClass.swift */,
+				7597068D24253791002BD2EE /* NestedStruct.swift */,
 			);
 			path = ExampleModels;
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				75D4AEF0229B2B160038C8C4 /* Dog.swift in Sources */,
 				AFA449A323CDE6A2003845CA /* RLMTestClass.swift in Sources */,
+				7597068F242537F8002BD2EE /* NestedStruct.swift in Sources */,
 				757C87F622905A2E00BF03A7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
