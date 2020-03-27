@@ -19,11 +19,16 @@ import UnrealmObjC
 #endif
 
 internal var objectsAndRealmables: [String:RealmableBase.Type] = [:]
+internal var enumsAndRealmables: [String:RealmableEnum.Type] = [:]
 
 public protocol RealmableEnum {
     func rlmValue() -> Any
     init?(rlmValue: Any)
+	static var rawValueType: Any.Type { get }
 }
+
+public protocol RealmableEnumInt: RealmableEnum {}
+public protocol RealmableEnumString: RealmableEnum {}
 
 public extension RealmableEnum where Self : RawRepresentable {
     func rlmValue() -> Any {
@@ -34,6 +39,16 @@ public extension RealmableEnum where Self : RawRepresentable {
         guard let rawVal = rlmValue as? Self.RawValue else {return nil}
         self.init(rawValue: rawVal)
     }
+
+	static var rawValueType: Any.Type {
+		return Self.RawValue.self
+	}
+}
+
+extension Array where Element: RealmableEnum {
+	var elementType: Any.Type {
+		return Element.rawValueType
+	}
 }
 
 extension Optional where Wrapped: RealmableEnum {
@@ -309,9 +324,16 @@ public extension Realmable {
                             try property.set(value: convertedArray, on: &self)
                         } else {
                             var selfArray = [Any]()
+							let generic = getGeneric(from: String(describing: type(of: child.value)))
+
                             for i in 0..<realmArray.count {
                                 let o = realmArray[i]
-                                selfArray.append(o)
+
+								if let enumType = enumsAndRealmables[generic], let enumVal = enumType.init(rlmValue: o) {
+									selfArray.append(enumVal)
+								} else {
+									selfArray.append(o)
+								}
                             }
                             try property.set(value: selfArray, on: &self)
                         }
@@ -415,6 +437,13 @@ fileprivate func convert<T: NSObject>(val: Any, to objectType: T.Type) -> AnyObj
                             if let o = convert(val: value, to: c) {
                                 realmArray.add(o)
                             }
+						} else if let enumValue = value as? RealmableEnum {
+							let rawValue = enumValue.rlmValue()
+							if let intValue = rawValue as? Int {
+								realmArray.add(NSNumber(value: intValue) as AnyObject)
+							} else {
+								realmArray.add(rawValue as AnyObject)
+							}
                         } else {
                             realmArray.add(value as AnyObject)
                         }

@@ -12,7 +12,8 @@ class Tests: XCTestCase {
     
     private static func configRealm() -> Realm.Configuration {
 		let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self, ParentStruct.self, ParentStruct.ChildStruct.self]
-        Realm.registerRealmables(realmableTypes)
+		Realm.registerRealmables(realmableTypes,
+								 enums: [MyEnum.self])
 
 		var objectTypes = realmableTypes.compactMap({$0.objectType()})
 		objectTypes.append(RLMTestClass.self)
@@ -133,7 +134,9 @@ class Tests: XCTestCase {
 						floatOptional: 3.4,
 						doubleOptional: 1.3,
 						boolOptional: true,
-						arrayOptional: [loc2, loc3])
+						arrayOptional: nil,
+						arrayOfEnums: [],
+						arrayOfEnumsOptional: nil)
 
         try! self.realm.write {
             self.realm.add(user)
@@ -155,6 +158,8 @@ class Tests: XCTestCase {
 		XCTAssertEqual(NSDictionary(dictionary: user.dicInt), NSDictionary(dictionary: savedUser!.dicInt))
         XCTAssertEqual(user.intOptional, savedUser!.intOptional)
 		XCTAssertEqual(user.arrayOptional, savedUser!.arrayOptional)
+		XCTAssertEqual(user.arrayOfEnums, savedUser!.arrayOfEnums)
+		XCTAssertEqual(user.arrayOfEnumsOptional, savedUser!.arrayOfEnumsOptional)
 
         XCTAssertEqual(user.list.count, savedUser!.list.count)
         for i in 0..<user.list.count {

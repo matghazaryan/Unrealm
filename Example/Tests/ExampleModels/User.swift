@@ -9,7 +9,7 @@
 import Foundation
 import Unrealm
 
-enum MyEnum: Int, RealmableEnum {
+enum MyEnum: Int, RealmableEnumInt {
     case case1
     case case2
     case case3
@@ -31,6 +31,8 @@ struct User: Realmable {
 	var doubleOptional: Double? = nil
 	var boolOptional: Bool? = nil
 	var arrayOptional: [Location]? = nil
+	var arrayOfEnums: [MyEnum] = []
+	var arrayOfEnumsOptional: [MyEnum]? = nil
     
     static func primaryKey() -> String? {
         return "id"

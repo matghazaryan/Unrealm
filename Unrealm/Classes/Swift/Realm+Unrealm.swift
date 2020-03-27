@@ -201,9 +201,15 @@ public extension Realm {
      Unrealm requires to register all the types conforming to Realmable protocol
      - parameter realmables: Types to be registereds
     */
-    static func registerRealmables(_ realmables: [RealmableBase.Type]) {
+    static func registerRealmables(_ realmables: [RealmableBase.Type], enums: [RealmableEnum.Type] = []) {
 		prepareUnrealm()
-		
+
+		for en in enums {
+			let types = exctractTypeComponents(from: en)
+            let typeName = types.1
+			enumsAndRealmables[typeName] = en
+		}
+
         //Creating all classes
         realmables.forEach({
             var superClass: AnyClass = Object.self
@@ -255,8 +261,8 @@ public extension Realm {
         }
     }
     
-    static func registerRealmables(_ realmables:RealmableBase.Type...) {
-        registerRealmables(realmables)
+	static func registerRealmables(_ realmables:RealmableBase.Type..., enums: [RealmableEnum.Type] = []) {
+        registerRealmables(realmables, enums: enums)
     }
 }
 
@@ -325,7 +331,7 @@ fileprivate func addPropertyToClassIfNeeded(className: AnyObject.Type, name: Str
     addPropertyToClass(className, name, typeStr)
 }
 
-fileprivate func getGeneric(from type: String) -> String {
+internal func getGeneric(from type: String) -> String {
     if let match = type.range(of: "(?<=<)[^>]+", options: .regularExpression) {
         return String(type[match])
     }
@@ -368,6 +374,15 @@ fileprivate func getTypeString(from value: Any) -> String {
     if typeStr.hasPrefix("Dictionary<") {
         return "NSData"
     }
+
+	if typeStr.hasPrefix("Array<") {
+		let generic = getGeneric(from: typeStr)
+		if let enumType = enumsAndRealmables[generic] {
+			let rawValueType = enumType.rawValueType
+			typeStr = "Array<" + String(describing: rawValueType) + ">"
+			return typeStr
+		}
+	}
     
     if let typeinfo = try? typeInfo(of: type(of: value)) {
         if typeinfo.kind == .enum {
