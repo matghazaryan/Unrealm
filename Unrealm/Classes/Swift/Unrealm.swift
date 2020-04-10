@@ -371,22 +371,12 @@ public extension Object {
     }
     
     func toRealmable() -> RealmableBase? {
-        let objTypeString = self.typeStr()
-        if let type = objectsAndRealmables[objTypeString] {
+        let objTypeString = self.typeString() ?? ""
+		if let type = objectsAndRealmables.first(where: {objTypeString.contains($0.key)})?.value {
             let convertedObj = self.toRealmable(of: type)
             return convertedObj as? RealmableBase
         }
         return nil
-    }
-}
-
-extension Object {
-    func typeStr() -> String {
-        let t = String(describing: self)
-        if let match = t.range(of: "[a-zA-Z0-9_.]+", options: .regularExpression) {
-            return String(t[match])
-        }
-        return ""
     }
 }
 

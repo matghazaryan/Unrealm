@@ -11,4 +11,8 @@
 
 void prepareUnrealm(void);
 
+@interface NSObject(TypeString)
+- (NSString *)typeString;
+@end
+
 #endif /* Object_Unrealm_h */

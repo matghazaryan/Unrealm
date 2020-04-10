@@ -71,3 +71,11 @@ void prepareUnrealm(void)
 {
 	[RealmSwiftObject prepareUnrealm];
 }
+
+@implementation NSObject(TypeString)
+- (NSString *)typeString
+{	
+	NSString *str = NSStringFromClass([self class]);
+	return  str;
+}
+@end
