@@ -372,7 +372,7 @@ public extension Object {
     
     func toRealmable() -> RealmableBase? {
         let objTypeString = self.typeString() ?? ""
-		if let type = objectsAndRealmables.first(where: {objTypeString.contains($0.key)})?.value {
+		if let type = objectsAndRealmables.filter({objTypeString.contains($0.key)}).map{($0, $1)}.sorted(by: {$0.0 > $1.0}).first?.1 {
             let convertedObj = self.toRealmable(of: type)
             return convertedObj as? RealmableBase
         }

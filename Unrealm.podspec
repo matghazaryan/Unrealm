@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
   s.swift_version    = '5.1'
-  s.version          = '1.2.1'
+  s.version          = '1.2.2'
   s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
   s.description      = <<-DESC
 Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.
