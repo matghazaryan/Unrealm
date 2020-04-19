@@ -53,12 +53,12 @@
 
 + (nullable NSArray<RLMProperty *> *)_unrealm_getPropertiesWithInstance:(__unused id)obj
 {
-	if ([self isSubclassOfClass:[RealmSwiftClassPermission class]]
-		|| [self isSubclassOfClass:[RealmSwiftPermission class]]
-		|| [self isSubclassOfClass:[RealmSwiftPermissionRole class]]
-		|| [self isSubclassOfClass:[RealmSwiftPermissionUser class]]
-		|| [self isSubclassOfClass:[RealmSwiftRealmPermission class]]
-		|| [self isSubclassOfClass:[DynamicObject class]]) {
+	if ([self isSubclassOfClass:NSClassFromString(@"RealmSwiftClassPermission")]
+		|| [self isSubclassOfClass:NSClassFromString(@"RealmSwiftPermission")]
+		|| [self isSubclassOfClass:NSClassFromString(@"RealmSwiftPermissionRole")]
+		|| [self isSubclassOfClass:NSClassFromString(@"RealmSwiftPermissionUser")]
+		|| [self isSubclassOfClass:NSClassFromString(@"RealmSwiftRealmPermission")]
+		|| [self isSubclassOfClass:NSClassFromString(@"DynamicObject")]) {
 		return [self _unrealm_getPropertiesWithInstance:obj];
 	}
 
