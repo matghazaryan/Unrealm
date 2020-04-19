@@ -341,9 +341,27 @@ public extension Realmable {
                         if let t = property.type as? RealmableEnum.Type, let val = t.init(rlmValue: value) {
                             try property.set(value: val, on: &self)
                         } else if child.value is [AnyHashable:Any], let data = value as? Data {
-							if let json = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
-								try property.set(value: json, on: &self)
+							#if os(iOS)
+							if #available(iOS 11.0, *) {
+								if let json = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
+									try property.set(value: json, on: &self)
+								}
+							} else {
+								if let json = NSKeyedUnarchiver.unarchiveObject(with: data) {
+									try property.set(value: json, on: &self)
+								}
 							}
+							#elseif os(OSX)
+							if #available(OSX 10.13, *) {
+								if let json = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
+									try property.set(value: json, on: &self)
+								}
+							} else {
+								if let json = NSKeyedUnarchiver.unarchiveObject(with: data) {
+									try property.set(value: json, on: &self)
+								}
+							}
+							#endif
                         } else {
                             try property.set(value: value, on: &self)
                         }
