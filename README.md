@@ -21,8 +21,8 @@
 <a href="https://cocoapods.org/pods/Unrealm">
 <img src="https://img.shields.io/cocoapods/p/Unrealm.svg?style=flat" alt="Platform">
 </a>
-<a href="https://github.com/realm/realm-cocoa/releases/tag/v4.4.1">
-<img src="https://img.shields.io/badge/RealmCocoa-v4.4.1-green?style=flat" alt="Platform">
+<a href="https://github.com/realm/realm-cocoa/releases/tag/v5.0.3">
+<img src="https://img.shields.io/badge/RealmCocoa-v5.0.3-green?style=flat" alt="Platform">
 </a> 
 </p>
 
@@ -102,15 +102,13 @@ it, simply add the following line to your Podfile:
 pod 'Unrealm'
 ```
 
-### Swift Package Manager (till v0.2.5)
+### Swift Package Manager
 You can also use Swift Package Manager to add Unrealm as a dependency to your project. In order to do so, use the following URL:
 
 ```bash
 https://github.com/arturdev/Unrealm.git
 ```
-
-You will also need to set your desired version or branch (e.g. master).
-
+You need to use "SPM" branch instead of master.
 ## ToDos
 
 - Add more UnitTests
