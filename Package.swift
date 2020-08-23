@@ -3,6 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "Unrealm",
+    platforms: [
+        .iOS(.v11)
+    ],
     products: [
         .library(name: "UnrealmObjC", targets: ["UnrealmObjC"]),
         .library(name: "Unrealm", targets: ["Unrealm", "UnrealmObjC"])
