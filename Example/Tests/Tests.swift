@@ -43,7 +43,7 @@ class Tests: XCTestCase {
 			self.realm.add(parent, update: .all)
 		}
 
-		let savedParent = self.realm.objects(ParentStruct.self).last
+		let savedParent = self.realm.object(ofType: ParentStruct.self, forPrimaryKey: parent.id)
 		XCTAssertEqual(parent.id, savedParent?.id)
 		XCTAssertEqual(parent.name, savedParent?.name)
 		XCTAssertEqual(parent.child.id, savedParent?.child.id)
@@ -96,7 +96,7 @@ class Tests: XCTestCase {
             self.realm.add(dog)
         }
         
-        let savedDog = self.realm.objects(Dog.self).last
+		let savedDog = self.realm.object(ofType: Dog.self, forPrimaryKey: dog.id)
         XCTAssertNotNil(savedDog)
         XCTAssertEqual(dog.id, savedDog?.id)
         XCTAssertEqual(dog.name, savedDog?.name)
@@ -142,7 +142,7 @@ class Tests: XCTestCase {
             self.realm.add(user)
         }
         
-        let savedUser = self.realm.objects(User.self).last
+		let savedUser = self.realm.object(ofType: User.self, forPrimaryKey: user.id)
         XCTAssertNotNil(savedUser)
        
         XCTAssertEqual(user.id, savedUser!.id)
@@ -188,7 +188,7 @@ class Tests: XCTestCase {
 			self.realm.add(user)
 		}
 
-		let savedUser = self.realm.objects(User.self).last
+		let savedUser = self.realm.object(ofType: User.self, forPrimaryKey: user.id)
 		XCTAssertNotNil(savedUser)
 
 		XCTAssertEqual(user.id, savedUser!.id)
@@ -229,7 +229,7 @@ class Tests: XCTestCase {
 			self.realm.add(user)
 		}
 
-		let savedUser = self.realm.objects(User.self).last
+		let savedUser = self.realm.object(ofType: User.self, forPrimaryKey: user.id)
 		XCTAssertNotNil(savedUser)
 		XCTAssertEqual(user.id, savedUser!.id)
 		XCTAssertEqual(user.a, savedUser!.a)
@@ -257,7 +257,7 @@ class Tests: XCTestCase {
 			self.realm.add(obj)
 		}
 
-		let savedObj = self.realm.objects(RLMTestClass.self).last
+		let savedObj = self.realm.object(ofType: RLMTestClass.self, forPrimaryKey: obj.id)
 		XCTAssertNotNil(savedObj)
 		XCTAssertEqual(obj.id, savedObj!.id)
 		XCTAssertEqual(obj.name, savedObj!.name)
