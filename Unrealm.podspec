@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
   s.swift_version    = '5.1'
-  s.version          = '1.3.5'
+  s.version          = '1.9.0'
   s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
   s.description      = <<-DESC
 Unrealm enables you to easily store Swift native Classes, Structs and Enums into Realm.
@@ -34,6 +34,7 @@ Works perfect with Codables and Optionals!
 
   s.source_files = 'Unrealm/Classes/**/*.{h,m,swift}'
 
-  s.dependency 'RealmSwift', '5.0.3'
+  s.dependency 'Realm', '10.5.0'
+  s.dependency 'RealmSwift', '10.5.0'
   s.dependency 'RuntimeNew', '2.1.5'
 end

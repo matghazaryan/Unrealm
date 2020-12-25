@@ -11,7 +11,15 @@ class Tests: XCTestCase {
     }()
     
     private static func configRealm() -> Realm.Configuration {
-		let realmableTypes: [RealmableBase.Type] = [Dog.self, User.self, Person.self, SubPerson.self, Location.self, Passenger.self, Driver.self, ParentStruct.self, ParentStruct.ChildStruct.self]
+		let realmableTypes: [RealmableBase.Type] = [Dog.self,
+													User.self,
+													Person.self,
+													SubPerson.self,
+													Location.self,
+													Passenger.self,
+													Driver.self,
+													ParentStruct.self,
+													ParentStruct.ChildStruct.self]
 		Realm.registerRealmables(realmableTypes,
 								 enums: [MyEnum.self])
 

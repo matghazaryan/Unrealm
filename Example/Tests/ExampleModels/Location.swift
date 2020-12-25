@@ -10,6 +10,6 @@ import Foundation
 import Unrealm
 
 struct Location: Realmable, Equatable {
-    var lat: Double = 0
-    var lng: Double = 0
+	var lat: Double = 0
+	var lng: Double = 0
 }

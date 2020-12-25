@@ -10,17 +10,17 @@ import Foundation
 import Unrealm
 
 class Person: Decodable, Realmable {
-    static func == (lhs: Person, rhs: Person) -> Bool {
-        return lhs.name == rhs.name
-    }
-    
-    var name: String = ""
-    
-    required init() {
-        
-    }
+	static func == (lhs: Person, rhs: Person) -> Bool {
+		return lhs.name == rhs.name
+	}
+	
+	var name: String = ""
+	
+	required init() {
+		
+	}
 }
 
 class SubPerson: Person {
-    var surname: String = ""
+	var surname: String = ""
 }

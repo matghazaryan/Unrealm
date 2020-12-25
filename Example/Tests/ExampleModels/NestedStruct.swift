@@ -29,7 +29,7 @@ struct ParentStruct: Realmable {
 	var name: String = ""
 	var child: ChildStruct = ChildStruct()
 
-    static func primaryKey() -> String? {
-        return "id"
-    }
+	static func primaryKey() -> String? {
+		return "id"
+	}
 }
