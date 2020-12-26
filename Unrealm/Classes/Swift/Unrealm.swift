@@ -101,7 +101,9 @@ public protocol RealmableBase {
 	mutating func readValues(from obj: Object)
 	func toObject() -> Object?
 	static var realmClassPrefix: String {get}
-	static func className() -> String
+	func typeName() -> String
+	static func typeName() -> String
+	static func rlmClassName() -> String
 
 	/**
 	Implement this method to specify the name of a property to be used as the primary key.
@@ -139,7 +141,15 @@ public extension RealmableBase {
 		return "RLM"
 	}
 
-	static func className() -> String {
+	func typeName() -> String {
+		return type(of: self).typeName()
+	}
+
+	static func typeName() -> String {
+		return String(describing: self)
+	}
+
+	static func rlmClassName() -> String {
 		let typeName = exctractTypeComponents(from: self).1
 		return realmClassPrefix + typeName
 	}
@@ -325,7 +335,7 @@ public extension Realmable {
 							try property.set(value: convertedArray, on: &self)
 						} else {
 							var selfArray = [Any]()
-							let generic = getGeneric(from: String(describing: type(of: child.value)))
+							let generic = getGeneric(from: Unrealm.typeName(of: child.value))
 
 							for i in 0..<realmArray.count {
 								let o = realmArray[i]
@@ -523,7 +533,11 @@ extension NSNumber {
 			self.init(value: value)
 		} else if let value = value as? UInt16 {
 			self.init(value: value)
+		} else if let value = value as? Float32 {
+			self.init(value: value)
 		} else if let value = value as? Float {
+			self.init(value: value)
+		} else if let value = value as? Float64 {
 			self.init(value: value)
 		} else if let value = value as? Double {
 			self.init(value: value)
@@ -533,4 +547,49 @@ extension NSNumber {
 		return nil
 	}
 }
+
+internal func typeName(of value: Any) -> String {
+	if let _ = value as? Int8 {
+		return "Int8"
+	} else if let _ = value as? Int16 {
+		return "Int16"
+	} else if let _ = value as? Int32 {
+		return "Int32"
+	} else if let _ = value as? Int {
+		return "Int"
+	} else if let _ = value as? Int64 {
+		return "Int64"
+	} else if let _ = value as? UInt8 {
+		return "UInt8"
+	} else if let _ = value as? UInt16 {
+		return "UInt16"
+	} else if let _ = value as? UInt32 {
+		return "UInt32"
+	} else if let _ = value as? UInt64 {
+		return "UInt64"
+	} else if let _ = value as? UInt16 {
+		return "UInt16"
+	} else if let _ = value as? Float32 {
+		return "Float32"
+	} else if let _ = value as? Float {
+		return "Float"
+	} else if let _ = value as? Float64 {
+		return "Float64"
+	} else if let _ = value as? Double {
+		return "Double"
+	} else if let _ = value as? Bool {
+		return "Bool"
+	} else if let _ = value as? String {
+		return "String"
+	} else if let _ = value as? Date {
+		return "Date"
+	} else if let _ = value as? Data {
+		return "Data"
+	} else if let value = value as? Realmable {
+		return value.typeName()
+	}
+
+	return String(describing: type(of: value))
+}
+
 // swiftlint:enable all
