@@ -10,7 +10,7 @@
 import Foundation
 import RealmSwift
 import Realm
-import RuntimeNew
+import Runtime
 
 public typealias Realm = RealmSwift.Realm
 public typealias NotificationToken = RealmSwift.NotificationToken
