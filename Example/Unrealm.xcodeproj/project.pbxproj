@@ -34,7 +34,6 @@
 		75F16D9F2406DF3100610F0A /* UserInputAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D4AEED229B1DCB0038C8C4 /* UserInputAlert.swift */; };
 		75F16DA32406DFFB00610F0A /* ToDoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F16DA12406DFFB00610F0A /* ToDoListController.swift */; };
 		75F16DA42406DFFB00610F0A /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F16DA22406DFFB00610F0A /* ToDoTableViewCell.swift */; };
-		8D07B7CA63C8070772B7A35A /* Pods_Example_with_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42A6F91E820FC579EE4673E /* Pods_Example_with_Mac.framework */; };
 		8EE82FF10D2EF411D3394A91 /* Pods_RealmStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78516466702DDE1C6A6D0609 /* Pods_RealmStorage.framework */; };
 		AAA1438F9D4A58FF1C8F87ED /* Pods_Unrealm_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2027D8A7C92BD198607385 /* Pods_Unrealm_Example.framework */; };
 		AF4394812406BE26000F23FD /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF43947F2406BDE7000F23FD /* Results.swift */; };
@@ -108,7 +107,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		18F7A191D824D3BF24442E33 /* Pods-Example with Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Mac.release.xcconfig"; path = "Target Support Files/Pods-Example with Mac/Pods-Example with Mac.release.xcconfig"; sourceTree = "<group>"; };
 		22DA468562DD513F75CFFD39 /* Pods_Unrealm_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unrealm_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23192FD7FBCB3D1B86EB3C6F /* Unrealm.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Unrealm.podspec; path = ../Unrealm.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2811C7319575574EBDF0DE56 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 		6558BE3FA92312ADDF029457 /* Pods-Example with Abstraction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Abstraction.debug.xcconfig"; path = "Target Support Files/Pods-Example with Abstraction/Pods-Example with Abstraction.debug.xcconfig"; sourceTree = "<group>"; };
 		692E1D3E6D897AFA2B3E4E4F /* Pods-Unrealm_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unrealm_Tests.release.xcconfig"; path = "Target Support Files/Pods-Unrealm_Tests/Pods-Unrealm_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		69F8DA86A48340925389E082 /* Pods-Unrealm_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unrealm_Example.release.xcconfig"; path = "Target Support Files/Pods-Unrealm_Example/Pods-Unrealm_Example.release.xcconfig"; sourceTree = "<group>"; };
-		6FCE82442D8E089D7BF15FAA /* Pods-Example with Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Mac.debug.xcconfig"; path = "Target Support Files/Pods-Example with Mac/Pods-Example with Mac.debug.xcconfig"; sourceTree = "<group>"; };
 		750EC15422CAA44B005CBAE8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		757C87F122905A2800BF03A7 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		757C87F222905A2800BF03A7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -177,7 +174,6 @@
 		DACEE9F0F1E114711D2E7895 /* Pods-RealmStorage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmStorage.release.xcconfig"; path = "Target Support Files/Pods-RealmStorage/Pods-RealmStorage.release.xcconfig"; sourceTree = "<group>"; };
 		DB6DEFEE7523B3B473A95A84 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		DFA033B0738F2A562D98C1D8 /* Pods-RealmStorage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmStorage.debug.xcconfig"; path = "Target Support Files/Pods-RealmStorage/Pods-RealmStorage.debug.xcconfig"; sourceTree = "<group>"; };
-		E42A6F91E820FC579EE4673E /* Pods_Example_with_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_with_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +197,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D07B7CA63C8070772B7A35A /* Pods_Example_with_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +378,6 @@
 			isa = PBXGroup;
 			children = (
 				52FA6C70C4F7C143D737D311 /* Pods_Example_with_Abstraction.framework */,
-				E42A6F91E820FC579EE4673E /* Pods_Example_with_Mac.framework */,
 				78516466702DDE1C6A6D0609 /* Pods_RealmStorage.framework */,
 				7E2027D8A7C92BD198607385 /* Pods_Unrealm_Example.framework */,
 				22DA468562DD513F75CFFD39 /* Pods_Unrealm_Tests.framework */,
@@ -475,8 +469,6 @@
 			children = (
 				6558BE3FA92312ADDF029457 /* Pods-Example with Abstraction.debug.xcconfig */,
 				779517AF2142D68C25B996ED /* Pods-Example with Abstraction.release.xcconfig */,
-				6FCE82442D8E089D7BF15FAA /* Pods-Example with Mac.debug.xcconfig */,
-				18F7A191D824D3BF24442E33 /* Pods-Example with Mac.release.xcconfig */,
 				DFA033B0738F2A562D98C1D8 /* Pods-RealmStorage.debug.xcconfig */,
 				DACEE9F0F1E114711D2E7895 /* Pods-RealmStorage.release.xcconfig */,
 				ADD323495251385BFDE17EED /* Pods-Unrealm_Example.debug.xcconfig */,
@@ -551,11 +543,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7597068724241216002BD2EE /* Build configuration list for PBXNativeTarget "Example with Mac" */;
 			buildPhases = (
-				0921CC3F4B9A17D532662114 /* [CP] Check Pods Manifest.lock */,
 				7597067424241214002BD2EE /* Sources */,
 				7597067524241214002BD2EE /* Frameworks */,
 				7597067624241214002BD2EE /* Resources */,
-				7552351FB751199063AAF1C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -744,28 +734,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0921CC3F4B9A17D532662114 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example with Mac-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4F59A4BC6ACF48D1ABB1F16D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -773,16 +741,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Unrealm_Example/Pods-Unrealm_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RuntimeNew-iOS/RuntimeNew.framework",
-				"${BUILT_PRODUCTS_DIR}/Unrealm-iOS/Unrealm.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Runtime/Runtime.framework",
+				"${BUILT_PRODUCTS_DIR}/Unrealm/Unrealm.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RuntimeNew.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Runtime.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unrealm.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,30 +778,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7552351FB751199063AAF1C3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example with Mac/Pods-Example with Mac-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift-macOS/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RuntimeNew-macOS/RuntimeNew.framework",
-				"${BUILT_PRODUCTS_DIR}/Unrealm-macOS/Unrealm.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RuntimeNew.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unrealm.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example with Mac/Pods-Example with Mac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		84F1B14B3A48087058F58DE6 /* [CP] Check Pods Manifest.lock */ = {
@@ -865,16 +809,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Example with Abstraction/Pods-Example with Abstraction-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RuntimeNew-iOS/RuntimeNew.framework",
-				"${BUILT_PRODUCTS_DIR}/Unrealm-iOS/Unrealm.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Runtime/Runtime.framework",
+				"${BUILT_PRODUCTS_DIR}/Unrealm/Unrealm.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RuntimeNew.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Runtime.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unrealm.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1181,6 +1125,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Unrealm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1196,6 +1141,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Unrealm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1215,6 +1161,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1230,6 +1177,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1241,7 +1189,6 @@
 		};
 		7597068524241216002BD2EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FCE82442D8E089D7BF15FAA /* Pods-Example with Mac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1270,7 +1217,6 @@
 		};
 		7597068624241216002BD2EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18F7A191D824D3BF24442E33 /* Pods-Example with Mac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;

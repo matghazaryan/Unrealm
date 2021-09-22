@@ -123,7 +123,7 @@ extension Results {
 	- parameter sortDescriptors: A sequence of `SortDescriptor`s to sort by.
 	*/
 	public func sorted<S: Sequence>(by sortDescriptors: S) -> Results<Element>
-	where S.Iterator.Element == SortDescriptor {
+    where S.Iterator.Element == RealmSwift.SortDescriptor {
 		return Results(rlmResult: rlmResult.sorted(by: sortDescriptors))
 	}
 }
