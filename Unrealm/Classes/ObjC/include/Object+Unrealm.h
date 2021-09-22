@@ -9,6 +9,8 @@
 #ifndef Object_Unrealm_h
 #define Object_Unrealm_h
 
+#import "ObjectiveCRuntime.h"
+
 void prepareUnrealm(void);
 
 @interface NSObject(TypeString)

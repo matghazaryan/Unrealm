@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Unrealm'
-  s.swift_version    = '5.1'
+  s.swift_version    = '5.5'
   s.version          = '1.9.1'
   s.summary          = 'Unrealm is an extension on RealmCocoa, which enables Swift native types to be saved in Realm.'
   s.description      = <<-DESC
@@ -29,12 +29,12 @@ Works perfect with Codables and Optionals!
   s.source           = { :git => 'https://github.com/arturdev/Unrealm.git', :tag => s.version.to_s }
   s.social_media_url = 'https://www.linkedin.com/in/arturdev/'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
   s.osx.deployment_target = '10.12'
 
   s.source_files = 'Unrealm/Classes/**/*.{h,m,swift}'
 
-  s.dependency 'Realm', '10.7.4'
-  s.dependency 'RealmSwift', '10.7.4'
-  s.dependency 'RuntimeNew', '2.1.5'
+  s.dependency 'Realm'
+  s.dependency 'RealmSwift'
+  s.dependency 'Runtime'
 end
