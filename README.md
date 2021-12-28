@@ -108,7 +108,7 @@ You can also use Swift Package Manager to add Unrealm as a dependency to your pr
 ```bash
 https://github.com/arturdev/Unrealm.git
 ```
-You need to use "SPM" branch instead of master.
+You need to use "master" branch instead of SPM.
 ## ToDos
 
 - Add more UnitTests
