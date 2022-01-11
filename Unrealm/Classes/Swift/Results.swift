@@ -127,7 +127,6 @@ extension Results {
 		return Results(rlmResult: rlmResult.sorted(by: sortDescriptors))
 	}
 }
-
 //MARK: - Aggregate operations
 extension Results {
 
@@ -148,7 +147,7 @@ extension Results {
 
 	- parameter property: The name of a property whose minimum value is desired.
 	*/
-	public func min<T: MinMaxType>(ofProperty property: String) -> T? {
+	public func min<T: _HasPersistedType>(ofProperty property: String) -> T? where T.PersistedType: MinMaxType {
 		return rlmResult.min(ofProperty: property)
 	}
 
@@ -159,7 +158,7 @@ extension Results {
 
 	- parameter property: The name of a property whose minimum value is desired.
 	*/
-	public func max<T: MinMaxType>(ofProperty property: String) -> T? {
+	public func max<T: _HasPersistedType>(ofProperty property: String) -> T? where T.PersistedType: MinMaxType {
 		return rlmResult.max(ofProperty: property)
 	}
 
@@ -170,7 +169,7 @@ extension Results {
 
 	- parameter property: The name of a property whose values should be summed.
 	*/
-	public func sum<T: AddableType>(ofProperty property: String) -> T {
+	public func sum<T: _HasPersistedType>(ofProperty property: String) -> T where T.PersistedType: AddableType {
 		return rlmResult.sum(ofProperty: property)
 	}
 
@@ -181,7 +180,7 @@ extension Results {
 
 	- parameter property: The name of a property whose average value should be calculated.
 	*/
-	public func average<T: AddableType>(ofProperty property: String) -> T? {
+	public func average<T: _HasPersistedType>(ofProperty property: String) -> T? where T.PersistedType: AddableType {
 		return rlmResult.average(ofProperty: property)
 	}
 }
