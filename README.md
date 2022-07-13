@@ -67,7 +67,7 @@ All you have to do is
 ```Swift
 Realm.registerRealmables(ToDoItem.self)
 ```
-Thats it! Now you can store your Struct or Class object into Realm as usualy you do with Objc Classes.
+That's it! Now you can store your Struct or Class object into Realm as usually you do with Objc Classes.
 
 ## Pros and Cons 
 
