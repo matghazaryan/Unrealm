@@ -7,7 +7,7 @@
 
 #import <objc/runtime.h>
 #import "Object+Unrealm.h"
-@import RealmSwift;
+@import Realm.Swift;
 @import Realm;
 
 @implementation RealmSwiftObject (Unrealm)
@@ -27,7 +27,8 @@
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		Class class = object_getClass((id)self);
-
+        _Pragma("clang diagnostic push")
+        _Pragma("clang diagnostic ignored \"-Wundeclared-selector\"")
 		SEL originalSelector = @selector(_getProperties);
 		SEL swizzledSelector = @selector(_unrealm_getProperties);
 
@@ -48,6 +49,7 @@
 		} else {
 			method_exchangeImplementations(originalMethod, swizzledMethod);
 		}
+        _Pragma("clang diagnostic pop")
 	});
 
 }
