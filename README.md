@@ -126,6 +126,7 @@ Contributions are welcome, and they are greatly appreciated!
 ## Author
 
 arturdev, mkrtarturdev@gmail.com
+matghazaryan, matevos14@gmail.com
 
 ## License
 
