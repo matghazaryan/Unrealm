@@ -30,7 +30,7 @@
 
 <p align="center">
 Unrealm enables you to easily store Swift native <b>Classes</b>, <b>Structs</b> and <b>Enums</b> into <a href="https://github.com/realm/realm-cocoa">Realm <img width="18" src = "https://raw.githubusercontent.com/arturdev/Unrealm/assets/realmLogoSmall.png"></a>.<br/>Stop inheriting from <b>Object</b>! Go for Protocol-Oriented programming!<br>
-Made with ❤️ by <a href="https://github.com/matghazaryan">matghazaryan</a> & <a href="https://github.com/arturdev">rturdev</a>
+Made with ❤️ by <a href="https://github.com/matghazaryan">matghazaryan</a> & <a href="https://github.com/arturdev">arturdev</a>
 </p>
 <br>
 
