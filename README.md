@@ -106,7 +106,7 @@ pod 'Unrealm'
 You can also use Swift Package Manager to add Unrealm as a dependency to your project. In order to do so, use the following URL:
 
 ```bash
-https://github.com/arturdev/Unrealm.git
+https://github.com/matghazaryan/Unrealm.git
 ```
 You need to use "master" branch instead of SPM.
 ## ToDos
